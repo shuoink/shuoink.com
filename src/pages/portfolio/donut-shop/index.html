@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html style="height: 100%"
+  <head>
+    <title>shuoink</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+      :root {
+        --blue: #0eb1d2;
+        --blue-dark: #0d4955;
+        --green: #cce8cc;
+        --tan: #f6efee;
+        --pink: #f3b9d2;
+        --gray: #4c4c47;
+        --black: #2d2d2a;
+      }
+      html {
+        font-size: 200%;
+        font-family: 'Fjalla One', sans-serif;
+      }
+
+      body {
+        background: var(--blue);
+        color: white;
+      }
+
+      nav {
+        padding: 0.5rem;
+      }
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      nav ul li {
+        display: inline-block;
+      }
+      nav ul li a {
+        color: rgba(0,0,0,0.5);
+        padding: 0.25rem 0.5rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        border: 2px solid transparent;
+      }
+      nav ul li a:hover, nav ul li.is-active a {
+        color: rgba(255,255,255,0.8);
+        border: 2px solid currentColor;
+        border-radius: 1rem;
+      }
+      nav ul li a:active {
+        color: var(--blue);
+        background: rgba(255,255,255,0.8);
+        border: 2px solid rgba(255,255,255,0.8);
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav style="display: flex">
+      <div>
+        <svg width="3rem" height="3rem" viewbox="0,0,100,100" style="display: block; margin: 0 auto">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="var(--tan)" stroke-width="2" stroke-miterlimit="10" />
+          <circle cx="50" cy="50" r="15" fill="none" stroke="var(--tan)" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+        DONUT SHOP
+      </div>
+
+      <ul style="flex-grow: 1; text-align: right">
+        <li><a href="/">About</a></li>
+        <li><a href="/menu">Menu</a></li>
+        <li><a href="/catering">Catering</a></li>
+        <li><a href="/location">Location / Hours</a></li>
+        <li><a href="/careers">We're Hiring!</a></li>
+      <ul>
+    </nav>
+    
+    <div id="puns"></div>
+
+    <script>
+      (() => {
+        const puns = ["Do or donut, there is no try.",
+          "I'm donuts about you!",
+          "Donut mind if I do.",
+          "Donut stop believing.",
+          "It's your birthday, let's donuts!",
+          "I donut care what you think, I am having another donut!",
+          "They went down in a glaze of glory.",
+          "Oh my, that's out-glaze-ous!",
+          "Let’s go glaze-y!",
+          "You are a-glaze-ing.",
+          "If a donut had a window, would it be double glazed?",
+          "You drive me glaze-y.",
+          "Haven't you heard? It's the latest glaze.",
+          "Sprinkle sprinkle, little star.",
+          "You've got a lovely sprinkle in your eye.",
+          "Eat more hole foods, donuts count!",
+          "Hole-y moley!",
+          "You’re so sweet and hole-some.",
+          "A hole in one!",
+          "Well, dough you or dough-n't you?",
+          "Dough you like donuts? I dough!",
+          "Why did the donut go to the dentist? It needed a filling!",
+          ];
+        const randomPun = () => {
+          document.querySelector('#puns').innerHTML = puns[Math.floor(Math.random() * puns.length)];
+        }
+        const interval = setInterval(randomPun, 5000);
+        randomPun();
+      })();
+    </script>
+
+<div style="height: 10000px">make the page huge</div>
+    
+  </body>
+</html>
