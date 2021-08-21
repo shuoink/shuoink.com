@@ -1,5 +1,3 @@
-export const FIELD_CLASSES = 'block w-full border-2 border-current p-2';
-
 export const BUTTON_CLASSES =
   'bg-gray-100 font-bold border-current border-2 p-2 px-4 text-gray-900 uppercase select-none hover:bg-gray-900 hover:text-gray-100 duration-75 cursor-pointer';
 
@@ -17,3 +15,11 @@ export const MEDIA_QUERIES = {
   'xl': '(min-width: 1280px)',
   '2xl': '(min-width: 1536px)',
 };
+
+export const TEXT_BAD = 'text-red-500';
+export const BG_BAD = 'bg-red-200';
+export const BORDER_BAD = 'border-red-500';
+
+export const TEXT_GOOD = 'text-green-500';
+export const BG_GOOD = 'bg-green-200';
+export const BORDER_GOOD = 'border-green-500';

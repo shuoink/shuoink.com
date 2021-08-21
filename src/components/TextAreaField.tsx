@@ -1,21 +1,26 @@
 import {VFC} from 'react';
-import classnames from 'classnames';
-import {FIELD_CLASSES} from '../constants';
-import {FormGroup} from './FormGroup';
+import {useField, UseFieldConfig} from 'react-final-form';
+import {useId} from '@reach/auto-id';
+import getFieldClasses from '../utils/getFieldClasses';
+import Label from './Label';
+import FieldFeedback from './FieldFeedback';
 
 export const TextAreaField: VFC<
-  JSX.IntrinsicElements['textarea'] & {
-    id: string;
-    displayName: string;
-    setValue: (value: string) => void;
-  }
-> = ({id, displayName, className, setValue, ...rest}) => (
-  <FormGroup labelFor={id} label={displayName}>
-    <textarea
-      {...rest}
-      id={id}
-      onChange={e => setValue(e.currentTarget.value)}
-      className={classnames(className, FIELD_CLASSES)}
-    />
-  </FormGroup>
-);
+  Omit<JSX.IntrinsicElements['textarea'], 'id'> &
+    Pick<UseFieldConfig<string>, 'validate'> & {
+      name: string;
+      displayName: string;
+    }
+> = ({name, displayName, className, validate, ...rest}) => {
+  const {input, meta} = useField(name, {validate});
+  const id = useId() ?? '';
+  return (
+    <>
+      <Label {...meta} htmlFor={id}>
+        <div>{displayName}:</div>
+        <textarea {...input} {...rest} id={id} className={getFieldClasses(meta)} />
+      </Label>
+      <FieldFeedback {...meta} />
+    </>
+  );
+};

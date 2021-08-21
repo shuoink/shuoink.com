@@ -6,7 +6,7 @@ const Services = () => (
       <title>Stephen Sorensen - Services</title>
       <meta name="description" content="Stephen Sorensen - Services" />
     </Head>{' '}
-    TODO: Services
+    <ul>Landing Pages Forms E-Commerce</ul>
   </div>
 );
 
