@@ -7,6 +7,14 @@ import {TextField} from './TextField';
 import Alert from './Alert';
 import * as val from '../utils/validate';
 
+declare global {
+  interface Window {
+    pa?: {
+      track: (event: {name: string; value?: number; unit?: string}) => void;
+    };
+  }
+}
+
 const ContactForm: FC = () => {
   return (
     <Form<{name: string; email: string; message: string}>
@@ -23,6 +31,7 @@ const ContactForm: FC = () => {
             [FORM_ERROR]: 'There was an error sending your message.',
           };
         }
+        window.pa?.track({name: 'CONTACT_FORM_SUBMITTED'});
       }}
       render={({
         handleSubmit,
