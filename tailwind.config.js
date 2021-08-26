@@ -15,7 +15,9 @@ module.exports = {
         none: 'none',
       },
       colors: {
-        'brand-orange': '#fb795b',
+        'brand-orange': '#d85118',
+        'brand-pink': '#371837',
+        'brand-blue': '#050b29',
       },
       flexGrow: {
         2: 2,

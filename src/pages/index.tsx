@@ -12,6 +12,7 @@ import bg from '../../public/images/laptop.jpg';
 import Grid from '../components/Grid';
 import ScreenCenter from '../components/ScreenCenter';
 import stephen from '../../public/images/stephen.jpg';
+import BackgroundImage from '../components/BackgroundImage';
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
           content="custom web development for your business"
         />
       </Head>
+      <BackgroundImage src={bg} />
       <ScreenCenter>
         <Grid>
           <div className="col-start-10 col-span-2 self-center lg:order-last">
@@ -35,7 +37,7 @@ export default function Home() {
           <div className="col-span-8 self-center">
             <div className="flex flex-col justify-center items-start">
               <Heading level={1}>Stephen Sorensen</Heading>
-              <p className="lg:text-justify text-2xl lg:text-4xl text-brand-orange py-8 leading-tight">
+              <p className="text-justify text-2xl lg:text-4xl bg-gray-800 bg-opacity-75 text-gray-100 p-8 leading-snug mt-2">
                 I create websites with dynamic, interactive content, forms,
                 integrated e-commerce, and engaging landing pages to help you
                 reach more customers, build credibility, showcase your brand,
