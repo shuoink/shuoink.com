@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ButtonLink from '../../components/LinkButton';
+import ButtonLink from '../../components/ButtonLink';
 
 const Portfolio = () => (
   <div>

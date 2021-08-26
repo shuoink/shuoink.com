@@ -1,7 +1,7 @@
 import {GetServerSideProps} from 'next';
 import Link from 'next/link';
 import {Fragment, VFC} from 'react';
-import ButtonLink from '../../components/LinkButton';
+import ButtonLink from '../../components/ButtonLink';
 import getBlogPost from '../../utils/getBlogPost';
 import {ContentfulBlogPost} from '../../utils/types';
 

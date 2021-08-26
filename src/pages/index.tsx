@@ -3,67 +3,55 @@ import Image from 'next/image';
 import {FaGithub, FaTwitter} from 'react-icons/fa';
 import Link from 'next/link';
 import Corset from '../components/Corset';
-import ButtonLink from '../components/LinkButton';
+import ButtonLink from '../components/ButtonLink';
 import Strong from '../components/Strong';
+import Slide from '../components/Slide';
+import Polaroid from '../components/Polaroid';
+import Heading from '../components/Heading';
+import bg from '../../public/images/laptop.jpg';
+import Grid from '../components/Grid';
+import ScreenCenter from '../components/ScreenCenter';
+import stephen from '../../public/images/stephen.jpg';
 
 export default function Home() {
   return (
     <>
       <Head>
         <title>Stephen Sorensen</title>
-        <meta name="description" content="custom web development for your business" />
+        <meta
+          name="description"
+          content="custom web development for your business"
+        />
       </Head>
-      <Corset>
-        <div className="sm:flex justify-around items-center sm:min-h-screen-3/4">
-          <div className="flex-grow">
-            <p className="text-4xl font-bold mt-10 mb-8 sm:mt-14 sm:mb-10 text-gray-900">
-              Reach more customers, build credibility, showcase your brand, and generate more leads.
-            </p>
-            <p className="text-lg sm:text-2xl sm:leading-10 font-medium mb-10 sm:mb-11">
-              Let&apos;s <Strong>maximize your revenue</Strong> with a modern web site custom-built
-              for your business.
-            </p>
-            <div className="text-center lg:text-left">
-              <Link href="/contact" passHref>
-                {/* TODO: this should eventually link to /services */}
-                <ButtonLink className="my-4">Tell Me More</ButtonLink>
-              </Link>
+      <ScreenCenter>
+        <Grid>
+          <div className="col-start-10 col-span-2 self-center lg:order-last">
+            <div className="flex flex-col items-center">
+              <Polaroid>
+                <Image src={stephen} alt="me" />
+              </Polaroid>
             </div>
           </div>
-          <div className="whitespace-nowrap mt-16 lg:mt-0">
-            <div className="text-center">
-              <Image
-                src="https://www.gravatar.com/avatar/8db4c1b03b20a1b5614f8e4a2cfbc188?s=300"
-                alt="me"
-                width="300"
-                height="300"
-                className="rounded-full"
-              />
-              <p>
-                <Strong>Stephen Sorensen</Strong>
+          <div className="col-span-8 self-center">
+            <div className="flex flex-col justify-center items-start">
+              <Heading level={1}>Stephen Sorensen</Heading>
+              <p className="lg:text-justify text-2xl lg:text-4xl text-brand-orange py-8 leading-tight">
+                I create websites with dynamic, interactive content, forms,
+                integrated e-commerce, and engaging landing pages to help you
+                reach more customers, build credibility, showcase your brand,
+                and maximize your revenue.
               </p>
-              <p>JavaScript Developer</p>
-              <div>
-                <a
-                  href="https://twitter.com/shuoink"
-                  aria-label="Twitter Profile"
-                  className="inline-block m-2 border-gray-900 border-2 bg-gray-100 hover:bg-gray-900 text-gray-900 hover:text-gray-100 rounded-full p-2 text-small duration-75"
-                >
-                  <FaTwitter />
-                </a>
-                <a
-                  href="https://github.com/spudly"
-                  aria-label="Github Profile"
-                  className="inline-block m-2 border-gray-900 border-2 bg-gray-100 hover:bg-gray-900 text-gray-900 hover:text-gray-100 rounded-full p-2 text-small duration-75"
-                >
-                  <FaGithub />
-                </a>
+              <div className="w-full text-center sm:text-left">
+                <Link href="/services" passHref>
+                  <ButtonLink className="my-4">
+                    Let&apos;s work together!
+                  </ButtonLink>
+                </Link>
               </div>
             </div>
           </div>
-        </div>
-        {/* TODO: brand logos here */}
-      </Corset>
+        </Grid>
+      </ScreenCenter>
     </>
   );
 }

@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import {VFC} from 'react';
-import ButtonLink from '../../components/LinkButton';
+import ButtonLink from '../../components/ButtonLink';
 import getBlogPosts from '../../utils/getBlogPosts';
 import {ContentfulBlogPost} from '../../utils/types';
 
 const Blog: VFC<{blogPosts?: ContentfulBlogPost[]}> = ({blogPosts}) => {
-  console.log({blogPosts});
   return (
     <div>
       <ul>

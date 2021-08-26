@@ -7,6 +7,10 @@ import Script from 'next/script';
 import Head from 'next/head';
 import {Form} from 'react-final-form';
 import ContactForm from '../components/ContactForm';
+import Heading from '../components/Heading';
+import Slide from '../components/Slide';
+import ScreenCenter from '../components/ScreenCenter';
+import Grid from '../components/Grid';
 
 const Contact = () => (
   <>
@@ -14,10 +18,16 @@ const Contact = () => (
       <title>Stephen Sorensen - Contact</title>
       <meta name="description" content="Contact Stephen Sorensen" />
     </Head>
-    <Corset>
-      <h1 className="text-4xl font-bold mt-10 mb-8 sm:mt-14 sm:mb-10 text-gray-900">Contact</h1>
-      <ContactForm />
-    </Corset>
+    <ScreenCenter>
+      <Grid>
+        <div className="col-span-6 self-center">
+          <Heading level={1}>Contact</Heading>
+        </div>
+        <div className="col-span-6 self-center">
+          <ContactForm />
+        </div>
+      </Grid>
+    </ScreenCenter>
   </>
 );
 

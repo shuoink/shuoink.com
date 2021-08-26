@@ -24,11 +24,17 @@ const ContactForm: FC = () => {
           };
         }
       }}
-      render={({handleSubmit, submitError, submitFailed, submitSucceeded}) =>
+      render={({
+        handleSubmit,
+        submitError,
+        submitSucceeded,
+        submitFailed,
+        invalid,
+      }) =>
         submitSucceeded ? (
-          <Alert type="success">You Did it!</Alert>
+          <Alert type="success">Thank you! Your message has been sent.</Alert>
         ) : (
-          <form className="space-y-4" noValidate onSubmit={handleSubmit}>
+          <form className="space-y-8" noValidate onSubmit={handleSubmit}>
             <TextField name="name" displayName="Name" validate={val.required} />
             <TextField
               name="email"
@@ -36,11 +42,22 @@ const ContactForm: FC = () => {
               type="email"
               validate={val.compose(val.required, val.email)}
             />
-            <TextAreaField name="message" displayName="Message" validate={val.required} />
+            <TextAreaField
+              name="message"
+              displayName="Message"
+              rows={6}
+              validate={val.required}
+            />
 
-            {submitFailed && <Alert type="error">{submitError}</Alert>}
+            {submitError ? (
+              <Alert type="error">{submitError}</Alert>
+            ) : submitFailed && invalid ? (
+              <Alert type="error">Please correct the field errors above.</Alert>
+            ) : null}
 
-            <Button type="submit">Send</Button>
+            <div className="text-center">
+              <Button type="submit">Send</Button>
+            </div>
           </form>
         )
       }

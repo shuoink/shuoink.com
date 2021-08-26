@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import ButtonLink from '../components/LinkButton';
+import ButtonLink from '../components/ButtonLink';
 
 const Testimonials = () => (
   <div>

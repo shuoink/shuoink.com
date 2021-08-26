@@ -15,12 +15,17 @@ export const TextAreaField: VFC<
   const {input, meta} = useField(name, {validate});
   const id = useId() ?? '';
   return (
-    <>
+    <div>
       <Label {...meta} htmlFor={id}>
         <div>{displayName}:</div>
-        <textarea {...input} {...rest} id={id} className={getFieldClasses(meta)} />
+        <textarea
+          {...input}
+          {...rest}
+          id={id}
+          className={getFieldClasses({...meta, dock: {bottom: meta.touched && meta.invalid}})}
+        />
       </Label>
-      <FieldFeedback {...meta} />
-    </>
+      <FieldFeedback dock={{top: true}} {...meta} />
+    </div>
   );
 };

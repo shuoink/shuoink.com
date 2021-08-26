@@ -11,6 +11,17 @@ module.exports = {
         'screen-1/2': '50vh',
         'screen-3/4': '75vh',
       },
+      maxHeight: {
+        none: 'none',
+      },
+      colors: {
+        'brand-orange': '#fb795b',
+      },
+      flexGrow: {
+        2: 2,
+        3: 3,
+        4: 4,
+      },
     },
   },
   variants: {

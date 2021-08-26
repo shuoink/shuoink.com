@@ -1,7 +1,6 @@
 import '../styles/styles.css';
 import type {AppProps} from 'next/app';
 import {Header} from '../components/Header';
-import {Footer} from '../components/Footer';
 
 const App = ({Component, pageProps}: AppProps) => (
   <div>
@@ -9,7 +8,6 @@ const App = ({Component, pageProps}: AppProps) => (
     <main>
       <Component {...pageProps} />
     </main>
-    <Footer />
   </div>
 );
 
