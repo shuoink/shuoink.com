@@ -72,7 +72,7 @@ export const Header: FC = () => {
             ))}
           </ul>
         </nav>
-        <button className="sm:hidden" onClick={toggle}>
+        <button className="sm:hidden" onClick={toggle} aria-label="Menu">
           <Hamburger toggled={isOpen} />
         </button>
       </header>
