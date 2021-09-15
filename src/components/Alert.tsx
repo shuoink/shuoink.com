@@ -1,13 +1,5 @@
 import classNames from 'classnames';
 import {FC} from 'react';
-import {
-  BG_BAD,
-  BG_GOOD,
-  BORDER_BAD,
-  BORDER_GOOD,
-  TEXT_BAD,
-  TEXT_GOOD,
-} from '../constants';
 
 const Alert: FC<{type: 'danger' | 'error' | 'success'}> = ({
   type,
@@ -15,14 +7,14 @@ const Alert: FC<{type: 'danger' | 'error' | 'success'}> = ({
 }) => (
   <div
     className={classNames('p-4 text-lg border-2', {
-      [TEXT_GOOD]: type === 'success',
-      [BORDER_GOOD]: type === 'success',
-      [BG_GOOD]: type === 'success',
+      'text-good-500': type === 'success',
+      'border-good-500': type === 'success',
+      'bg-good-100': type === 'success',
 
       // invalid:
-      [TEXT_BAD]: type === 'danger' || type === 'error',
-      [BORDER_BAD]: type === 'danger' || type === 'error',
-      [BG_BAD]: type === 'danger' || type === 'error',
+      'text-bad-500': type === 'danger' || type === 'error',
+      'border-bad-500': type === 'danger' || type === 'error',
+      'bg-bad-100': type === 'danger' || type === 'error',
     })}
   >
     {children}
