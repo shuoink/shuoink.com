@@ -5,12 +5,15 @@ const Label: FC<{
   htmlFor?: string;
   touched?: boolean;
   invalid?: boolean;
-}> = ({touched, invalid, htmlFor, children}) => (
+  small?: boolean;
+}> = ({touched, invalid, htmlFor, small, children}) => (
   <label
     htmlFor={htmlFor}
-    className={classnames('block text-2xl uppercase', {
+    className={classnames('block text-2xl', {
       'text-green-500': touched && !invalid,
       'text-red-500': touched && invalid,
+      'text-2xl': !small,
+      'text-base': small,
     })}
   >
     {children}

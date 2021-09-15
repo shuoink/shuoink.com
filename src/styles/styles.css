@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../../public/fonts/Inter.ttf') format('ttf');
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .skewed-3d-left {
+    transform: perspective(1500px) rotateX(0) rotateY(-32deg) rotateZ(0);
+    transform-origin: center center;
+    transform-style: preserve-3d;
+  }
+}

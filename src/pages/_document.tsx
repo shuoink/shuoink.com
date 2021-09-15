@@ -1,4 +1,10 @@
-import Document, {Html, Head, Main, NextScript, DocumentContext} from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document';
 
 class MyDocument extends Document<{}> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -9,8 +15,11 @@ class MyDocument extends Document<{}> {
   render() {
     return (
       <Html lang="en" className="p-0">
-        <Head />
-        <body className="bg-gray-900 text-gray-100 p-0 min-h-screen">
+        <Head>
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          {/* <link rel="shortcut icon" type="image/jpg" href="logo.svg" /> */}
+        </Head>
+        <body className="bg-gray-100">
           <Main />
           <NextScript />
         </body>

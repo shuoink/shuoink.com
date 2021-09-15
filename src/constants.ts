@@ -1,5 +1,5 @@
 export const BUTTON_CLASSES =
-  'inline-block bg-transparent font-bold border-current border-2 p-2 px-4 text-gray-100 uppercase select-none hover:bg-gray-100 hover:text-gray-900 duration-75 cursor-pointer text-lg sm:text-2xl';
+  'inline-flex items-center justify-center px-4 py-2 text-lg font-medium text-white rounded-md bg-primary-600 hover:bg-primary-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 cursor-pointer';
 
 export const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN!;
 export const CONTENTFUL_SPACE_ID = '2mzgx8k2g2hb';
@@ -16,10 +16,8 @@ export const MEDIA_QUERIES = {
   '2xl': '(min-width: 1536px)',
 };
 
-export const TEXT_BAD = 'text-red-300';
-export const BG_BAD = 'bg-red-900';
-export const BORDER_BAD = 'border-red-300';
-
-export const TEXT_GOOD = 'text-green-300';
-export const BG_GOOD = 'bg-green-900';
-export const BORDER_GOOD = 'border-green-300';
+export const SECOND = 1000;
+export const MINUTE = 60 * SECOND;
+export const HOUR = 60 * MINUTE;
+export const DAY = 24 * HOUR;
+export const YEAR = DAY * 365;

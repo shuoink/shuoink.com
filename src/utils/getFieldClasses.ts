@@ -1,33 +1,28 @@
 import classnames from 'classnames';
-import {BORDER_BAD, BORDER_GOOD, TEXT_BAD, TEXT_GOOD} from '../constants';
-import {DockProp} from './types';
+import getDockClasses, {DockConfig} from './getDockClasses';
+import getValidityClasses from './getValidityClasses';
 
 const getFieldClasses = ({
   touched,
   invalid,
   dock = {},
+  block = true,
+  circular = false,
 }: {
   touched?: boolean;
   invalid?: boolean;
-  dock?: DockProp;
+  dock?: DockConfig;
+  block?: boolean;
+  circular?: boolean;
 }) =>
   classnames(
-    'block w-full border-2 p-2 focus:outline-none bg-gray-800 focus:ring-4 focus:ring-gray-800 focus:bg-gray-700 text-gray-900',
+    'p-2 text-2xl bg-white border border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-transparent focus:ring-complementary-300 focus:border-gray-100 shadow-lg',
+    getDockClasses(dock),
+    getValidityClasses(touched ? !invalid : null),
     {
-      'border-t-0': dock.top,
-      'border-r-0': dock.right,
-      'border-b-0': dock.bottom,
-      'border-l-0': dock.left,
-
-      'border-transparent': !touched,
-
-      // valid:
-      [TEXT_GOOD]: touched && !invalid,
-      [BORDER_GOOD]: touched && !invalid,
-
-      // invalid:
-      [TEXT_BAD]: touched && invalid,
-      [BORDER_BAD]: touched && invalid,
+      'block w-full': block,
+      'rounded-full': circular,
+      'rounded-md': !circular,
     }
   );
 

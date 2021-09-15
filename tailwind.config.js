@@ -1,4 +1,7 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
+  mode: 'jit',
   purge: ['./src/**/*.tsx', './src/**/*.ts'],
   darkMode: false,
   theme: {
@@ -15,6 +18,17 @@ module.exports = {
         none: 'none',
       },
       colors: {
+        'bad': colors.red,
+        'good': colors.green,
+        'info': colors.blue,
+        'warn': colors.orange,
+
+        'gray': colors.coolGray,
+
+        'primary': colors.red,
+        'secondary': colors.coolGray,
+        'complementary': colors.blue,
+
         'brand-orange': '#d85118',
         'brand-pink': '#371837',
         'brand-blue': '#050b29',
@@ -24,6 +38,9 @@ module.exports = {
         3: 3,
         4: 4,
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
     },
   },
   variants: {
@@ -31,5 +48,8 @@ module.exports = {
       translate: ['active'],
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };

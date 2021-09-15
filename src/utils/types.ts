@@ -14,10 +14,3 @@ export type ContentfulBlogPostFields = {
 };
 
 export type ContentfulBlogPost = Entry<ContentfulBlogPostFields>;
-
-export type DockProp = {
-  top?: boolean;
-  bottom?: boolean;
-  left?: boolean;
-  right?: boolean;
-};

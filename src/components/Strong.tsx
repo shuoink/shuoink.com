@@ -1,5 +1,7 @@
 import {FC} from 'react';
 
-const Strong: FC = ({children}) => <strong className="text-gray-900">{children}</strong>;
+const Strong: FC = ({children}) => (
+  <strong className="font-normal text-primary-600">{children}</strong>
+);
 
 export default Strong;

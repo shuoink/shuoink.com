@@ -1,22 +1,37 @@
-import Link from 'next/link';
-import {FC, useState} from 'react';
-import classnames from 'classnames';
+import LinkDescriptor from 'next/link';
+import {FC, forwardRef, Fragment, ReactNode, useState} from 'react';
 import {useRouter} from 'next/dist/client/router';
 import {Overlay} from './Overlay';
 import Hamburger from 'hamburger-react';
 import classNames from 'classnames';
+import Logo from './Logo';
+import ButtonLink from './ButtonLink';
+import A11ySkipLink from './A11ySkipLink';
+import IconLink from './IconLink';
 
-const LINKS: {href: string; text: string}[] = [
-  {href: '/', text: 'Home'},
-  {href: '/about', text: 'About'},
-  {href: '/services', text: 'Services'},
-  // {href: '/portfolio', text: 'Portfolio'},
-  // {href: '/testimonials', text: 'Testimonials'},
-  // {href: '/blog', text: 'Blog'},
-  {href: '/contact', text: 'Contact'},
-];
+export type LinkDescriptor = {href: string; text: string};
 
-export const Header: FC = () => {
+const NavLink = forwardRef<
+  HTMLAnchorElement,
+  {href?: string; isActive?: boolean; children: ReactNode}
+>(({href, isActive, children}, ref) => (
+  <a
+    ref={ref}
+    href={href}
+    className={classNames(
+      'px-2 py-1 rounded-md group-hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600',
+      {
+        'text-primary-600': isActive,
+      }
+    )}
+  >
+    {children}
+  </a>
+));
+
+NavLink.displayName = 'NavLink';
+
+const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
   const [isOpen, setIsOpen] = useState(false);
   const open = () => setIsOpen(true);
   const toggle = () => setIsOpen(is => !is);
@@ -24,58 +39,70 @@ export const Header: FC = () => {
   const {pathname} = useRouter();
   return (
     <>
-      {isOpen && <Overlay onClick={close} />}
-      <div className="pb-12 sm:pb-0" />
-      <header
-        className={classNames(
-          'fixed top-0 left-0 right-0 z-10 flex justify-between items-start sm:items-center bg-gray-800 text-gray-100 text-2xl leading-10 select-none duration-100',
-          {
-            'bg-opacity-75': !isOpen,
-            'bg-opacity-90': isOpen,
-          }
-        )}
-      >
-        <nav className="flex-grow">
-          <ul className="list-none flex flex-col sm:flex-row p-1">
-            {LINKS.map(({href, text}, index) => (
-              <li
-                key={href}
-                className={classNames(
-                  'sm:block sm:pr-4 hover:text-brand-orange',
-                  {
-                    'hidden pb-0': pathname !== href && !isOpen,
-                  }
-                )}
-              >
-                <Link href={href}>
-                  <a
-                    className={classnames(
-                      'block border-l-4 sm:border-l-0 sm:border-b-4 pl-2 sm:px-2',
-                      {
-                        'border-transparent': pathname !== href,
-                        'border-brand-orange': pathname === href,
-                      }
-                    )}
-                    onClick={e => {
-                      if (pathname === href && !isOpen) {
-                        e.preventDefault();
-                        open();
-                      } else {
-                        close();
-                      }
-                    }}
-                  >
-                    {text}
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <button className="sm:hidden" onClick={toggle} aria-label="Menu">
-          <Hamburger toggled={isOpen} />
-        </button>
-      </header>
+      <A11ySkipLink href="#main">Skip to Content</A11ySkipLink>
+      <nav className="text-sm text-gray-500 bg-white">
+        <div className="relative max-w-6xl mx-auto">
+          <div className="flex items-center justify-between lg:p-4">
+            <div className="pl-4 lg:p-0">
+              <IconLink href="/">
+                <Logo />
+              </IconLink>
+            </div>
+            <div className="hidden lg:block">
+              <ul className="flex items-center space-x-12 text-lg font-medium">
+                {links.map(link => (
+                  <li key={link.href} className="relative group">
+                    <NavLink href={link.href} isActive={pathname === link.href}>
+                      {link.text}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="hidden lg:block">
+              <ButtonLink href="#contact">{"Let's Work Together!"}</ButtonLink>
+            </div>
+            <button
+              className="p-1 rounded-md lg:hidden focus:ring-primary-600 focus:ring-2 focus:outline-none"
+              onClick={toggle}
+              aria-label="Toggle Menu"
+            >
+              <Hamburger toggled={isOpen} size={25} />
+            </button>
+          </div>
+          {isOpen && <Overlay visible onClick={close} />}
+          <div
+            className={classNames(
+              'absolute inset-x-0 z-10 pb-4 top-20 lg:hidden',
+              {
+                hidden: !isOpen,
+              }
+            )}
+          >
+            <div className="p-4 mx-4 font-medium bg-white rounded-md shadow-xl">
+              {links.map(link => (
+                <Fragment key={link.href}>
+                  <ul className="space-y-2">
+                    <li className="font-semibold tracking-wide uppercase text-md text-primary-600">
+                      <a href={link.href} onClick={close}>
+                        {link.text}
+                      </a>
+                    </li>
+                  </ul>
+                  <hr className="my-3" />
+                </Fragment>
+              ))}
+              <div className="text-center">
+                <ButtonLink href="#contact">
+                  {"Let's Work Together!"}
+                </ButtonLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
     </>
   );
 };
+
+export default Header;

@@ -10,22 +10,30 @@ export const TextAreaField: VFC<
     Pick<UseFieldConfig<string>, 'validate'> & {
       name: string;
       displayName: string;
+      errorDisplayName?: string;
     }
-> = ({name, displayName, className, validate, ...rest}) => {
+> = ({name, displayName, errorDisplayName, className, validate, ...rest}) => {
   const {input, meta} = useField(name, {validate});
   const id = useId() ?? '';
   return (
     <div>
       <Label {...meta} htmlFor={id}>
-        <div>{displayName}:</div>
+        <div>{displayName}</div>
         <textarea
           {...input}
           {...rest}
           id={id}
-          className={getFieldClasses({...meta, dock: {bottom: meta.touched && meta.invalid}})}
+          className={getFieldClasses({
+            ...meta,
+            dock: {bottom: meta.touched && meta.invalid},
+          })}
         />
       </Label>
-      <FieldFeedback dock={{top: true}} {...meta} />
+      <FieldFeedback
+        dock={{top: true}}
+        displayName={errorDisplayName ?? displayName}
+        {...meta}
+      />
     </div>
   );
 };
