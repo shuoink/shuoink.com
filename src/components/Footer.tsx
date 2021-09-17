@@ -22,24 +22,33 @@ const Footer = () => (
       <div className="px-4 pb-12 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
         <ul className="flex justify-center mt-8 space-x-12 text-2xl">
           <li>
-            <IconLink href="https://www.linkedin.com/in/stephensorensen/">
+            <IconLink
+              href="https://www.linkedin.com/in/stephensorensen/"
+              ariaLabel="LinkedIn Profile"
+            >
               <FaLinkedin />
             </IconLink>
           </li>
 
           <li>
-            <IconLink href="https://twitter.com/shuoink">
+            <IconLink
+              href="https://twitter.com/shuoink"
+              ariaLabel="Twitter Profile"
+            >
               <FaTwitter />
             </IconLink>
           </li>
 
           <li>
-            <IconLink href="https://github.com/spudly">
+            <IconLink
+              href="https://github.com/spudly"
+              ariaLabel="GitHub Profile"
+            >
               <FaGithub />
             </IconLink>
           </li>
         </ul>
-        <p className="mt-8 text-base text-center text-gray-400">
+        <p className="mt-8 text-base text-center text-gray-300">
           <Copyright holder="Shuoink LLC" start={2021} />
         </p>
       </div>

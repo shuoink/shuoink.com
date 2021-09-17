@@ -5,7 +5,7 @@ const Masonry: FC<{columns: 3 | 4 | 5 | 6}> = ({children, columns = 3}) => {
   const tiles = Children.toArray(children);
   return (
     <div
-      className={classNames('grid gap-4 isolate', {
+      className={classNames('lg:grid gap-4 isolate', {
         'grid-cols-3': columns === 3,
         'grid-cols-4': columns === 4,
         'grid-cols-5': columns === 5,

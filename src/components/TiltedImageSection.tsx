@@ -1,6 +1,7 @@
 import {FC} from 'react';
 import Image from 'next/image';
 import Section from './Section';
+import resize from '../utils/resize';
 
 const TiltedImageSection: FC<{src: StaticImageData; alt: string}> = ({
   src,
@@ -14,7 +15,12 @@ const TiltedImageSection: FC<{src: StaticImageData; alt: string}> = ({
           <div className="relative bottom-0 left-0 w-full">
             <div className="relative w-full h-full -ml-2 sm:ml-0 skewed-3d-left">
               <div className="relative top-0 left-0 w-full h-auto border shadow-xl rounded-xl">
-                <Image src={src} unoptimized alt={alt} />
+                <Image
+                  src={src}
+                  unoptimized
+                  alt={alt}
+                  {...resize(src, {width: 768})}
+                />
               </div>
             </div>
           </div>

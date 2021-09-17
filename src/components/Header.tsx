@@ -44,7 +44,7 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
         <div className="relative max-w-6xl mx-auto">
           <div className="flex items-center justify-between lg:p-4">
             <div className="pl-4 lg:p-0">
-              <IconLink href="/">
+              <IconLink href="/" ariaLabel="Home">
                 <Logo />
               </IconLink>
             </div>
@@ -65,9 +65,8 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
             <button
               className="p-1 rounded-md lg:hidden focus:ring-primary-600 focus:ring-2 focus:outline-none"
               onClick={toggle}
-              aria-label="Toggle Menu"
             >
-              <Hamburger toggled={isOpen} size={25} />
+              <Hamburger toggled={isOpen} size={25} label="Toggle Menu" />
             </button>
           </div>
           {isOpen && <Overlay visible onClick={close} />}

@@ -27,6 +27,7 @@ import patterns from '../../public/images/portfolio/patterns.png';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
 import Slant from '../components/Slant';
+import resize from '../utils/resize';
 
 const HashLink: FC<{href: string}> = ({href, children}) => {
   const child = Children.only(children);
@@ -49,20 +50,22 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Stephen Sorensen</title>
+        <title>Stephen Sorensen - Custom Web Development</title>
         <meta
           name="description"
-          content="custom web development for your business"
+          content="I create custom websites with dynamic, interactive content, forms,
+          integrated e-commerce, and engaging landing pages to help you
+          reach your business goals."
         />
       </Head>
-      <Section className="py-16 bg-white">
+      <Section className="lg:py-16 bg-white">
         <div className="flex flex-col max-w-6xl px-4 mx-auto lg:flex-row sm:px-6 lg:px-8 items-center">
           <div className="flex-1 flex flex-col items-center justify-center text-center lg:text-left lg:items-start">
-            <Heading className="my-6 text-5xl font-semibold text-gray-800">
+            <Heading color="black">
               Reach more customers, build credibility, showcase your brand, and
               maximize your revenue.
             </Heading>
-            <p className="w-4/6 text-lg text-gray-600">
+            <p className="w-4/6 lg:text-lg text-gray-600">
               I create custom websites with dynamic, interactive content, forms,
               integrated e-commerce, and engaging landing pages to help you
               reach your business goals.
@@ -85,22 +88,28 @@ export default function Home() {
         </div>
         <div className="mb-[6vw]" />
       </Section>
-      <a id="learn-more" />
+      <div id="learn-more" />
 
       <Slant />
 
       <Section
         id="about"
-        className="w-full mx-auto bg-white rounded-md md:flex xl:w-10/12 overflow-hidden"
+        className="w-full mx-auto bg-white lg:rounded-md md:flex xl:w-10/12 overflow-hidden"
       >
-        <div className="flex-1 relative rounded-md aspect-w-2 aspect-h-1">
-          <Image src={stephen} alt="me" layout="fill" objectFit="cover" />
+        <div className="md:w-1/2">
+          <div className="flex-1 relative aspect-w-1 aspect-h-1">
+            <Image
+              src={stephen}
+              alt="me"
+              layout="fill"
+              objectFit="cover"
+              {...resize(stephen, {width: 640})}
+            />
+          </div>
         </div>
         <div className="flex items-center flex-1">
           <div className="p-10 md:p-22 sm:p-16 space-y-4">
-            <Heading className="mb-8 text-5xl font-semibold text-primary-600">
-              Who is this guy?
-            </Heading>
+            <Heading>Who is this guy?</Heading>
             <p className="leading-loose text-black xxl:text-xl">
               Hi, I&apos;m Stephen Sorensen. I make web sites. In fact,
               I&apos;ve been creating web sites for nearly 30 years now.
@@ -136,7 +145,8 @@ export default function Home() {
 
       <Section
         id="portfolio"
-        className="w-full mx-auto rounded-md xl:w-10/12 my-32"
+        className="w-full mx-auto rounded-md xl:w-10/12 lg:my-32 p-10 lg:p-0 space-y-4
+        "
       >
         <Heading>Portfolio</Heading>
         <Masonry columns={5}>
@@ -144,12 +154,16 @@ export default function Home() {
             src={sadiesDonuts}
             href="https://sadies-donut-shop.vercel.app/"
             target="_blank"
+            rel="noopener noreferrer"
             alt="Sadie's Donut Shop Screenshot"
             body="This was an experimental design I created using Next.JS."
             title="Sadie's Donut Shop"
             footer={
               <>
-                <IconLink href="https://github.com/spudly/sadies-donut-shop">
+                <IconLink
+                  href="https://github.com/spudly/sadies-donut-shop"
+                  ariaLabel="sadies-donut-shop repository on GitHub"
+                >
                   <FaGithub />
                 </IconLink>
                 <div>Sep 2021</div>
@@ -160,12 +174,16 @@ export default function Home() {
             src={scriptureStudy}
             href="https://scripture-study.herokuapp.com/"
             target="_blank"
+            rel="noopener noreferrer"
             alt="scripture-study app screenshot"
             body="A web application I created for personal use. It allows you to highlight pieces of text to indicate whose words they are."
             title="Scripture.Study"
             footer={
               <>
-                <IconLink href="https://github.com/spudly/scripture.study">
+                <IconLink
+                  href="https://github.com/spudly/scripture.study"
+                  ariaLabel="scripture.study repository on GitHub"
+                >
                   <FaGithub />
                 </IconLink>
               </>
@@ -175,12 +193,16 @@ export default function Home() {
           <Tile
             href="https://github.com/spudly/eslint-config"
             target="_blank"
+            rel="noopener noreferrer"
             alt="@spudly/eslint-config screenshot"
             body="This is a shareable configuration for ESLint, a tool for checking and enforcing best practices. This helps to ensure that the code I write is high quality."
             title="@spudly/eslint-config"
             footer={
               <>
-                <IconLink href="https://github.com/spudly/eslint-config">
+                <IconLink
+                  href="https://github.com/spudly/eslint-config"
+                  ariaLabel="eslint-config repository on GitHub"
+                >
                   <FaGithub />
                 </IconLink>
               </>
@@ -189,12 +211,16 @@ export default function Home() {
           <Tile
             href="https://github.com/spudly/pushpop"
             target="_blank"
+            rel="noopener noreferrer"
             alt="pushpop screenshot"
             title="@spudly/pushpop"
             body="A function library for reusing common functions."
             footer={
               <>
-                <IconLink href="https://github.com/spudly/pushpop">
+                <IconLink
+                  href="https://github.com/spudly/pushpop"
+                  ariaLabel="pushpop repository on GitHub"
+                >
                   <FaGithub />
                 </IconLink>
               </>
@@ -203,12 +229,16 @@ export default function Home() {
           <Tile
             href="https://github.com/spudly/talk-like-a-pirate"
             target="_blank"
+            rel="noopener noreferrer"
             alt="talk-like-a-pirate screenshot"
             body="This be a JavaScript library to alter text to make like a pirate be talking. Yo ho!"
             title="talk-like-a-pirate"
             footer={
               <>
-                <IconLink href="https://github.com/spudly/talk-like-a-pirate">
+                <IconLink
+                  href="https://github.com/spudly/talk-like-a-pirate"
+                  ariaLabel="talk-like-a-pirate repository on GitHub"
+                >
                   <FaGithub />
                 </IconLink>
               </>
@@ -217,12 +247,16 @@ export default function Home() {
           <Tile
             href="https://github.com/spudly/strip-brackets"
             target="_blank"
+            rel="noopener noreferrer"
             alt="strip-brackets screenshot"
             body="A utility for removing unnecessary brackets from a string of text"
             title="strip-brackets"
             footer={
               <>
-                <IconLink href="https://github.com/spudly/strip-brackets">
+                <IconLink
+                  href="https://github.com/spudly/strip-brackets"
+                  ariaLabel="strip-brackets repository on GitHub"
+                >
                   <FaGithub />
                 </IconLink>
               </>
@@ -231,6 +265,7 @@ export default function Home() {
           <Tile
             href="https://react-patterns.stephensorensen.com/AdvancedReactDesignPatterns"
             target="_blank"
+            rel="noopener noreferrer"
             src={patterns}
             alt="advanced-react-design-patterns screenshot"
             body="This was a talk I gave at Connect.Tech, a frontend development conference held annually in Atlanta, GA."
@@ -238,13 +273,22 @@ export default function Home() {
             footer={
               <>
                 <div className="flex">
-                  <IconLink href="https://github.com/spudly/scripture.study">
+                  <IconLink
+                    href="https://github.com/spudly/scripture.study"
+                    ariaLabel="scripture.study repository on GitHub"
+                  >
                     <FaGithub />
                   </IconLink>
-                  <IconLink href="https://github.com/spudly/scripture.study">
+                  <IconLink
+                    href="https://github.com/spudly/scripture.study"
+                    ariaLabel="Presentation"
+                  >
                     <RiSlideshow2Line />
                   </IconLink>
-                  <IconLink href="https://github.com/spudly/scripture.study">
+                  <IconLink
+                    href="https://github.com/spudly/scripture.study"
+                    ariaLabel="Video of Talk"
+                  >
                     <FaPlay />
                   </IconLink>
                 </div>
@@ -256,6 +300,7 @@ export default function Home() {
           <Tile
             href="https://ice.com/"
             target="_blank"
+            rel="noopener noreferrer"
             src={ice}
             alt="ice.com screenshot"
             title="ice.com"
@@ -270,6 +315,7 @@ export default function Home() {
           <Tile
             href="https://nyse.com/"
             target="_blank"
+            rel="noopener noreferrer"
             src={nyse}
             alt="nyse.com screenshot"
             title="nyse.com"
@@ -283,6 +329,7 @@ export default function Home() {
           <Tile
             href="https://ctaplan.com"
             target="_blank"
+            rel="noopener noreferrer"
             src={ctaplan}
             alt="ctaplan.com screenshot"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for the Consolidated Tape Association."
@@ -296,6 +343,7 @@ export default function Home() {
           <Tile
             href="https://esignal.com/"
             target="_blank"
+            rel="noopener noreferrer"
             src={esignal}
             alt="esignal.com screenshot"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for eSignal."
@@ -309,6 +357,7 @@ export default function Home() {
           <Tile
             href="https://globalotc.com/"
             target="_blank"
+            rel="noopener noreferrer"
             src={globalotc}
             alt="globalotc.com screenshot"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for GlobalOTC."
@@ -322,6 +371,7 @@ export default function Home() {
           <Tile
             href="https://mersinc.org/"
             target="_blank"
+            rel="noopener noreferrer"
             src={mersinc}
             alt="mersinc.org screenshot"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for MERS."
@@ -343,7 +393,10 @@ export default function Home() {
         <p className="pt-8 text-xl md:text-2xl">&mdash; Me, LOL</p>
       </FullImageSectionWithSlant>
 
-      <Section id="contact" className="py-16 bg-gray-100">
+      <Section
+        id="contact"
+        className="py-16 bg-gray-100 p-10 md:p-22 sm:p-16 space-y-4"
+      >
         <div className="max-w-xl mx-auto">
           <div className="text-center">
             <Heading>Contact</Heading>
