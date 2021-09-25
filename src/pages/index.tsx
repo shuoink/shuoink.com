@@ -54,8 +54,7 @@ export default function Home() {
         <title>Stephen Sorensen - Custom Web Development</title>
         <meta
           name="description"
-          content="I create custom websites with dynamic, interactive content, forms,
-          integrated e-commerce, and engaging landing pages to help you
+          content="I create custom websites with dynamic, interactive content, forms, integrated e-commerce, and engaging landing pages to help you
           reach your business goals."
         />
       </Head>
@@ -69,8 +68,7 @@ export default function Home() {
             <p className="w-4/6 lg:text-2xl text-gray-500 lg:leading-snug">
               I create <Strong>custom</Strong> websites with{' '}
               <Strong>dynamic</Strong>, <Strong>interactive</Strong> content,
-              forms,
-              <Strong>integrated</Strong> e-commerce, and{' '}
+              forms, <Strong>integrated</Strong> e-commerce, and{' '}
               <Strong>engaging</Strong> landing pages to help you{' '}
               <Strong>reach your business goals</Strong>.
             </p>
