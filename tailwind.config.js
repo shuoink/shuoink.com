@@ -18,20 +18,16 @@ module.exports = {
         none: 'none',
       },
       colors: {
-        'bad': colors.red,
-        'good': colors.green,
-        'info': colors.blue,
-        'warn': colors.orange,
+        bad: colors.red,
+        good: colors.green,
+        info: colors.blue,
+        warn: colors.orange,
 
-        'gray': colors.coolGray,
+        gray: colors.coolGray,
 
-        'primary': colors.red,
-        'secondary': colors.coolGray,
-        'complementary': colors.blue,
-
-        'brand-orange': '#d85118',
-        'brand-pink': '#371837',
-        'brand-blue': '#050b29',
+        primary: colors.red,
+        secondary: colors.coolGray,
+        complementary: colors.blue,
       },
       flexGrow: {
         2: 2,

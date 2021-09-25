@@ -4,10 +4,10 @@ import {useRouter} from 'next/dist/client/router';
 import {Overlay} from './Overlay';
 import Hamburger from 'hamburger-react';
 import classNames from 'classnames';
-import Logo from './Logo';
 import ButtonLink from './ButtonLink';
 import A11ySkipLink from './A11ySkipLink';
 import IconLink from './IconLink';
+import ShuoinkLogo from './ShuoinkLogo';
 
 export type LinkDescriptor = {href: string; text: string};
 
@@ -41,11 +41,11 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
     <>
       <A11ySkipLink href="#main">Skip to Content</A11ySkipLink>
       <nav className="text-sm text-gray-500 bg-white">
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative xl:w-10/12 mx-auto">
           <div className="flex items-center justify-between lg:p-4">
             <div className="pl-4 lg:p-0">
               <IconLink href="/" ariaLabel="Home">
-                <Logo />
+                <ShuoinkLogo height={48} />
               </IconLink>
             </div>
             <div className="hidden lg:block">

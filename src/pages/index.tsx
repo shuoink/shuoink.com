@@ -28,6 +28,7 @@ import Section from '../components/Section';
 import Heading from '../components/Heading';
 import Slant from '../components/Slant';
 import resize from '../utils/resize';
+import Strong from '../components/Strong';
 
 const HashLink: FC<{href: string}> = ({href, children}) => {
   const child = Children.only(children);
@@ -59,16 +60,19 @@ export default function Home() {
         />
       </Head>
       <Section className="lg:py-16 bg-white">
-        <div className="flex flex-col max-w-6xl px-4 mx-auto lg:flex-row sm:px-6 lg:px-8 items-center">
-          <div className="flex-1 flex flex-col items-center justify-center text-center lg:text-left lg:items-start">
-            <Heading color="black">
+        <div className="flex flex-col xl:w-10/12 px-4 mx-auto lg:flex-row sm:px-6 lg:px-8 items-center">
+          <div className="flex-1 flex flex-col items-center justify-center text-center lg:text-left lg:items-start space-y-8 py-8 xl:space-y-16 xl:py-32">
+            <Heading className="text-black text-3xl xl:text-6xl font-bold leading-tight">
               Reach more customers, build credibility, showcase your brand, and
               maximize your revenue.
             </Heading>
-            <p className="w-4/6 lg:text-lg text-gray-600">
-              I create custom websites with dynamic, interactive content, forms,
-              integrated e-commerce, and engaging landing pages to help you
-              reach your business goals.
+            <p className="w-4/6 lg:text-2xl text-gray-500 lg:leading-snug">
+              I create <Strong>custom</Strong> websites with{' '}
+              <Strong>dynamic</Strong>, <Strong>interactive</Strong> content,
+              forms,
+              <Strong>integrated</Strong> e-commerce, and{' '}
+              <Strong>engaging</Strong> landing pages to help you{' '}
+              <Strong>reach your business goals</Strong>.
             </p>
             <div className="flex flex-col w-full mt-6 space-y-3 lg:space-y-0 lg:space-x-3 lg:flex-row lg:px-0">
               <HashLink href="#contact">
@@ -129,7 +133,6 @@ export default function Home() {
               &amp;{' '}
               <HyperLink
                 href="https://www.nyse.com"
-                className="text-brand-orange underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
