@@ -5,6 +5,7 @@ import Image from 'next/image';
 import stephen from '../../public/images/stephen.jpg';
 import resize from '../utils/resize';
 import {YEAR} from '../constants';
+import ButtonLink from '../components/ButtonLink';
 
 const About = () => (
   <Section
@@ -53,6 +54,11 @@ const About = () => (
           and countless React components used to create many high-traffic web
           sites.
         </p>
+        <p>
+          Now, I'&apos;m starting a new journey as a freelance developer. I
+          specialize in JavaScript &amp; React.
+        </p>
+        <ButtonLink href="/#contact">Let&apos;s Connect</ButtonLink>
       </div>
     </div>
   </Section>
