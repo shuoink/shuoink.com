@@ -1,0 +1,167 @@
+---
+title: Download Files Using Fetch
+description: How to download files using the fetch API
+categories: javascript
+pubDate: '2021-09-02T04:00:00.000Z'
+imageUrl: '/images/blog/disk.jpg'
+imageAlt: 'Hard Disk'
+imageWidth: 5184
+imageHeight: 3456
+---
+
+Recently I was developing a pretty straightforward React component that fetches
+data and renders it as an HTML table, but also allowed the user to download the
+data in either PDF or CSV format. On the surface, this looked like something I'd
+done many, many times. Easy.
+
+Not so fast though. The backend API accepts a set of search filters, which are
+sent as the body of a POST request, in JSON format. That's no problem for the
+fetch request that I use to populate the table, but what about the download
+buttons? Typically, to provide filters when downloading a file you have to
+either 1) use a GET request with query parameters, or 2) construct a hidden form
+and submit it programmatically to POST some data to the backend. Neither of
+these methods would work in this case, however, because the API doesn't support
+GET and a POST-ed form would submit the data with a content-type of
+`application/x-www-form-urlencoded` (we need application/json). I was about to
+reach out to the backend developer to ask for an API change, but I took a few
+seconds to ask google, and I found something unexpected.
+
+You can download things with the fetch API now! It's a little tricky and there
+are some caveats but it works beautifully. Awesome!
+
+OK, enough talk, let's dig in to see which APIs make this possible.
+
+## APIs
+
+### fetch
+
+Of course, you need to fetch something. You're probably already familiar with
+this API but I think it makes sense to start with the fetch code so you can see
+what we're sending and what we're receiving. Let's say, for example, you want to
+fetch a list of products matching some user-specified filters, and download the
+results as a PDF file. You'll write something like the following function, which
+performs a pretty standard POST request, using the fetch API.
+
+```js
+const fetchProductsPdf = (filters): Promise<Response> => {
+  const response = await fetch('/api/products', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // the type of content I'm sending
+      'Accept': 'application/pdf', // the type of content I want back from the server
+    },
+    body: JSON.stringify(filters),
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch products pdf - ${response.statusText}`);
+  }
+  // TODO: handle the response
+};
+```
+
+### response.blob()
+
+OK, now that we've got a response back from the server, we need to do something
+with it. The first step is to read the response, and that's where
+`response.blob()` comes in.
+
+You've probably used `response.json()` and/or `response.text()`. These APIs load
+the response body and, in the case of `.json()`, parse it too. In this case,
+however, we're dealing with binary data; it's not text-based. So instead of
+those APIs, we'll use `response.blob()`, which loads the response body as a Blob
+(binary) object.
+
+```js
+const blob: Blob = await response.blob();
+```
+
+### URL.createObjectURL
+
+This one threw me for a loop. Apparently you can stash a Blob or File object
+somewhere in the browser's memory and create a URL that references the stored
+object. When you call it, you get a URL back that references the object. The URL
+includes the blob protocol, the current site's protocol & hostname, and a unique
+identifier for the file. It might look something like this:
+`blob:https://www.yoursite.com/0b510301-3252-483c-a049-b73c6f3cf145`
+
+```js
+const objectUrl = URL.createObjectURL(blob);
+```
+
+### HTMLAnchorElement
+
+This is the DOM API for hyperlink elements. We're going to create an instance
+using `document.createElement`, and that hyperlink instance is going to
+reference the object URL we created earlier. After we've created and configured
+the link, we can programmatically click it without even adding it to the DOM!
+
+```js
+const link: HTMLAnchorElement = document.createElement('a');
+link.href = objectUrl;
+link.download = 'products.pdf'; // the default filename when the user saves the file
+link.click();
+```
+
+At this point, the browser downloads the file. Amazing!
+
+### URL.revokeObjectURL
+
+We're not done yet though. That file is still stored in memory, so if the user
+downloads lots of files (or big files), that could cause problems. Thankfully,
+there's a way to clean that all up. After the call to `link.click()`, we can
+clear the file from memory using `revokeObjectURL`.
+
+It's simple to use, but apparently a lot of people forget that step.
+
+```js
+URL.revokeObjectURL(objectUrl);
+```
+
+## Putting it all together
+
+```js
+const fetchProductsPdf = (filters): Promise<Response> => {
+  const response = await fetch('/api/products', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/pdf',
+    },
+    body: JSON.stringify(filters),
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch products pdf - ${response.statusText}`);
+  }
+  const blob: Blob = await response.blob();
+  const objectUrl = URL.createObjectURL(blob);
+  const link: HTMLAnchorElement = document.createElement('a');
+  link.href = objectUrl;
+  link.download = 'products.pdf';
+  link.click();
+  URL.revokeObjectURL(objectUrl);
+};
+```
+
+## Gotchas
+
+### response.blob() reads the entire response body (the file) into memory
+
+Ideally, when dealing with large files you'll want to use streams to avoid
+running out of memory. Unfortunately, these APIs don't work with streams, so be
+careful and avoid using this to download large files.
+
+### Don't forget to revoke the object URL!
+
+Again, this stores the entire file in memory. You need to manually remove it
+from memory when it's no longer needed to free up space. Otherwise, your web app
+will consume more and more of the user's memory when they download multiple
+files.
+
+### Chrome might block downloads
+
+Chrome added a new security feature late last year (2020) that prevents web
+sites from spamming users with file download requests. This is good, but it
+might cause problems as your users click on buttons that programmatically
+initiate file downloads. When chrome blocks the download, it has an indicator in
+the location bar, but it's not always obvious if you don't know what to look
+for.

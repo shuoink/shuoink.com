@@ -29,6 +29,7 @@ import Heading from '../components/Heading';
 import Slant from '../components/Slant';
 import resize from '../utils/resize';
 import Strong from '../components/Strong';
+import About from '../content/About';
 
 const HashLink: FC<{href: string}> = ({href, children}) => {
   const child = Children.only(children);
@@ -73,13 +74,13 @@ export default function Home() {
               <Strong>reach your business goals</Strong>.
             </p>
             <div className="flex flex-col w-full mt-6 space-y-3 lg:space-y-0 lg:space-x-3 lg:flex-row lg:px-0">
-              <HashLink href="#contact">
+              <HashLink href="/#contact">
                 <ButtonLink>
                   <span>I&apos;m ready!</span>
                   <BsArrowRight className="text-2xl ml-2" />
                 </ButtonLink>
               </HashLink>
-              <HashLink href="#learn-more">
+              <HashLink href="/#learn-more">
                 <ButtonLink>
                   <span>Tell Me More</span>
                   <BsArrowDown className="text-2xl ml-2" />
@@ -94,55 +95,7 @@ export default function Home() {
 
       <Slant />
 
-      <Section
-        id="about"
-        className="w-full mx-auto bg-white lg:rounded-md md:flex xl:w-10/12 overflow-hidden"
-      >
-        <div className="md:w-1/2">
-          <div className="flex-1 relative aspect-w-1 aspect-h-1">
-            <Image
-              src={stephen}
-              alt="me"
-              layout="fill"
-              objectFit="cover"
-              {...resize(stephen, {width: 640})}
-            />
-          </div>
-        </div>
-        <div className="flex items-center flex-1">
-          <div className="p-10 md:p-22 sm:p-16 space-y-4">
-            <Heading>Who is this guy?</Heading>
-            <p className="leading-loose text-black xxl:text-xl">
-              Hi, I&apos;m Stephen Sorensen. I make web sites. In fact,
-              I&apos;ve been creating web sites for nearly 30 years now.
-            </p>
-            <p className="leading-loose text-black xxl:text-xl">
-              I started early, as a teenager, and have been passionate about web
-              development ever since. I&apos;ve spent the last{' '}
-              {Math.round((Date.now() - new Date(2014, 0, 2).getTime()) / YEAR)}{' '}
-              years working as a Senior/Lead Frontend Developer for{' '}
-              <HyperLink
-                href="https://www.ice.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Intercontinental Exchange
-              </HyperLink>{' '}
-              &amp;{' '}
-              <HyperLink
-                href="https://www.nyse.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                The New York Stock Exchange
-              </HyperLink>
-              , where I built and maintained an in-house content management
-              system and countless React components used to create many
-              high-traffic web sites.
-            </p>
-          </div>
-        </div>
-      </Section>
+      <About />
 
       <Section
         id="portfolio"
@@ -152,11 +105,16 @@ export default function Home() {
         <Heading>Portfolio</Heading>
         <Masonry columns={5}>
           <Tile
-            src={sadiesDonuts}
+            img={
+              <Image
+                src={sadiesDonuts}
+                alt="Sadie's Donut Shop Screenshot"
+                {...resize(sadiesDonuts, {width: 350})}
+              />
+            }
             href="https://sadies-donut-shop.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            alt="Sadie's Donut Shop Screenshot"
             body="This was an experimental design I created using Next.JS."
             title="Sadie's Donut Shop"
             footer={
@@ -172,11 +130,16 @@ export default function Home() {
             }
           />
           <Tile
-            src={scriptureStudy}
+            img={
+              <Image
+                src={scriptureStudy}
+                alt="scripture-study app screenshot"
+                {...resize(scriptureStudy, {width: 350})}
+              />
+            }
             href="https://scripture-study.herokuapp.com/"
             target="_blank"
             rel="noopener noreferrer"
-            alt="scripture-study app screenshot"
             body="A web application I created for personal use. It allows you to highlight pieces of text to indicate whose words they are."
             title="Scripture.Study"
             footer={
@@ -195,7 +158,6 @@ export default function Home() {
             href="https://github.com/spudly/eslint-config"
             target="_blank"
             rel="noopener noreferrer"
-            alt="@spudly/eslint-config screenshot"
             body="This is a shareable configuration for ESLint, a tool for checking and enforcing best practices. This helps to ensure that the code I write is high quality."
             title="@spudly/eslint-config"
             footer={
@@ -213,7 +175,6 @@ export default function Home() {
             href="https://github.com/spudly/pushpop"
             target="_blank"
             rel="noopener noreferrer"
-            alt="pushpop screenshot"
             title="@spudly/pushpop"
             body="A function library for reusing common functions."
             footer={
@@ -231,7 +192,6 @@ export default function Home() {
             href="https://github.com/spudly/talk-like-a-pirate"
             target="_blank"
             rel="noopener noreferrer"
-            alt="talk-like-a-pirate screenshot"
             body="This be a JavaScript library to alter text to make like a pirate be talking. Yo ho!"
             title="talk-like-a-pirate"
             footer={
@@ -249,7 +209,6 @@ export default function Home() {
             href="https://github.com/spudly/strip-brackets"
             target="_blank"
             rel="noopener noreferrer"
-            alt="strip-brackets screenshot"
             body="A utility for removing unnecessary brackets from a string of text"
             title="strip-brackets"
             footer={
@@ -264,11 +223,16 @@ export default function Home() {
             }
           />
           <Tile
+            img={
+              <Image
+                src={patterns}
+                alt="advanced-react-design-patterns screenshot"
+                {...resize(patterns, {width: 350})}
+              />
+            }
             href="https://react-patterns.stephensorensen.com/AdvancedReactDesignPatterns"
             target="_blank"
             rel="noopener noreferrer"
-            src={patterns}
-            alt="advanced-react-design-patterns screenshot"
             body="This was a talk I gave at Connect.Tech, a frontend development conference held annually in Atlanta, GA."
             title="advanced-react-design-patterns"
             footer={
@@ -299,11 +263,16 @@ export default function Home() {
           />
 
           <Tile
+            img={
+              <Image
+                src={ice}
+                alt="ice.com screenshot"
+                {...resize(ice, {width: 350})}
+              />
+            }
             href="https://ice.com/"
             target="_blank"
             rel="noopener noreferrer"
-            src={ice}
-            alt="ice.com screenshot"
             title="ice.com"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for Intercontinental Exchange, Inc."
             footer={
@@ -314,11 +283,16 @@ export default function Home() {
           />
 
           <Tile
+            img={
+              <Image
+                src={nyse}
+                alt="nyse.com screenshot"
+                {...resize(nyse, {width: 350})}
+              />
+            }
             href="https://nyse.com/"
             target="_blank"
             rel="noopener noreferrer"
-            src={nyse}
-            alt="nyse.com screenshot"
             title="nyse.com"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for the New York Stock Exchange."
             footer={
@@ -328,11 +302,16 @@ export default function Home() {
             }
           />
           <Tile
+            img={
+              <Image
+                src={ctaplan}
+                alt="ctaplan.com screenshot"
+                {...resize(ctaplan, {width: 350})}
+              />
+            }
             href="https://ctaplan.com"
             target="_blank"
             rel="noopener noreferrer"
-            src={ctaplan}
-            alt="ctaplan.com screenshot"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for the Consolidated Tape Association."
             title="ctaplan.com"
             footer={
@@ -342,11 +321,16 @@ export default function Home() {
             }
           />
           <Tile
+            img={
+              <Image
+                src={esignal}
+                alt="esignal.com screenshot"
+                {...resize(esignal, {width: 350})}
+              />
+            }
             href="https://esignal.com/"
             target="_blank"
             rel="noopener noreferrer"
-            src={esignal}
-            alt="esignal.com screenshot"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for eSignal."
             title="esignal.com"
             footer={
@@ -356,11 +340,16 @@ export default function Home() {
             }
           />
           <Tile
+            img={
+              <Image
+                src={globalotc}
+                alt="globalotc.com screenshot"
+                {...resize(globalotc, {width: 350})}
+              />
+            }
             href="https://globalotc.com/"
             target="_blank"
             rel="noopener noreferrer"
-            src={globalotc}
-            alt="globalotc.com screenshot"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for GlobalOTC."
             title="globalotc.com"
             footer={
@@ -370,11 +359,16 @@ export default function Home() {
             }
           />
           <Tile
+            img={
+              <Image
+                src={mersinc}
+                alt="mersinc.org screenshot"
+                {...resize(mersinc, {width: 350})}
+              />
+            }
             href="https://mersinc.org/"
             target="_blank"
             rel="noopener noreferrer"
-            src={mersinc}
-            alt="mersinc.org screenshot"
             body="I created and maintained the internal CMS system, React components, and CSS styles used to create the website for MERS."
             title="mersinc.org"
             footer={

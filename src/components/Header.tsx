@@ -60,7 +60,7 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
               </ul>
             </div>
             <div className="hidden lg:block">
-              <ButtonLink href="#contact">{"Let's Work Together!"}</ButtonLink>
+              <ButtonLink href="/#contact">{"Let's Work Together!"}</ButtonLink>
             </div>
             <button
               className="p-1 rounded-md lg:hidden focus:ring-primary-600 focus:ring-2 focus:outline-none"
@@ -92,7 +92,7 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
                 </Fragment>
               ))}
               <div className="text-center">
-                <ButtonLink href="#contact">
+                <ButtonLink href="/#contact">
                   {"Let's Work Together!"}
                 </ButtonLink>
               </div>

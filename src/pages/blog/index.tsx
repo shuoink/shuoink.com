@@ -1,30 +1,51 @@
-import Link from 'next/link';
+import {GetStaticProps} from 'next';
 import {VFC} from 'react';
-import ButtonLink from '../../components/ButtonLink';
-import getBlogPosts from '../../utils/getBlogPosts';
-import {ContentfulBlogPost} from '../../utils/types';
+import Masonry from '../../components/Masonry';
+import Tile from '../../components/Tile';
+import {BlogPost, getBlogPosts} from '../../utils/blogPosts';
+import Image from 'next/image';
+import {format} from 'date-fns';
+import Section from '../../components/Section';
+import Heading from '../../components/Heading';
 
-const Blog: VFC<{blogPosts?: ContentfulBlogPost[]}> = ({blogPosts}) => {
+const Blog: VFC<{posts: BlogPost[]}> = ({posts}) => {
   return (
-    <div>
-      <ul>
-        {blogPosts?.map(post => (
-          <li key={post.sys.id}>
-            <Link href={`/blog/${post.fields.slug}`}>
-              <a>{post.fields.title}</a>
-            </Link>
-          </li>
+    <Section className="px-4 xl:px-0 xl:w-10/12 mx-auto my-16">
+      <Heading>Blog Posts</Heading>
+      <Masonry columns={5}>
+        {posts?.map(post => (
+          <Tile
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            body={<p>{post.description}</p>}
+            title={post.title}
+            img={
+              <Image
+                src={post.imageUrl}
+                alt={post.imageAlt}
+                width={350}
+                height={(350 / post.imageWidth) * post.imageHeight}
+              />
+            }
+            footer={
+              <time className="block w-full text-right">
+                {format(post.pubDate, 'MMM dd, yyyy')}
+              </time>
+            }
+          />
         ))}
-      </ul>
-      <Link href="/contact" passHref>
-        <ButtonLink className="my-4">Work With Me</ButtonLink>
-      </Link>
-    </div>
+      </Masonry>
+    </Section>
   );
 };
 
-export const getServerSideProps = async () => {
-  return {props: {blogPosts: await getBlogPosts()}};
+export const getStaticProps: GetStaticProps = async context => {
+  const posts = await getBlogPosts();
+  return {
+    props: {
+      posts: posts.map(({content, ...post}) => post),
+    },
+  };
 };
 
 export default Blog;

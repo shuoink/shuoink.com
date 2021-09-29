@@ -1,47 +1,120 @@
-import {GetServerSideProps} from 'next';
-import Link from 'next/link';
-import {Fragment, VFC} from 'react';
-import ButtonLink from '../../components/ButtonLink';
-import getBlogPost from '../../utils/getBlogPost';
-import {ContentfulBlogPost} from '../../utils/types';
+import {GetStaticPaths, GetStaticProps} from 'next';
+import {ComponentProps, ComponentType, FC, VFC} from 'react';
+import Heading from '../../components/Heading';
+import {
+  getBlogPost,
+  BlogPost as $BlogPost,
+  getBlogPosts,
+} from '../../utils/blogPosts';
+import Head from 'next/head';
+import {serialize} from 'next-mdx-remote/serialize';
+import {MDXRemote} from 'next-mdx-remote';
+import {PromiseValue} from 'type-fest';
+import About from '../../content/About';
+import {format} from 'date-fns';
+import {CopyBlock, atomOneDark} from 'react-code-blocks';
+import Image from 'next/image';
 
-const BlogEntry: VFC<{post: ContentfulBlogPost}> = ({post}) => (
-  <article key={post.sys.id}>
-    <h1>{post.fields.title}</h1>
-    <p>
-      <i>{post.fields.description}</i>
-    </p>
-    {post.metadata.tags.map(tag => (
-      <Fragment key={tag.sys.id}>
-        <span>#{tag.sys.id}</span>{' '}
-      </Fragment>
-    ))}
-    {post.fields.content.map(ref => (
-      <div key={ref.sys.id}>
-        {ref.sys.contentType.sys.id === 'text' ? (
-          <p>{ref.fields.text}</p>
-        ) : (
-          <p>UNKNOWN CONTENT TYPE</p>
-        )}
-      </div>
-    ))}
-    <div>
-      About the Author
-      <div>TODO</div>
-      <Link href="/contact" passHref>
-        <ButtonLink className="my-4">Work With Me</ButtonLink>
-      </Link>
-    </div>
-  </article>
+type Props = {
+  meta: Omit<$BlogPost, 'content'>;
+  content: PromiseValue<ReturnType<typeof serialize>>;
+};
+
+const Paragraph: FC<JSX.IntrinsicElements['p']> = props => <p {...props} />;
+
+const bindProps = <ALL_PROPS, BOUND_PROPS extends ALL_PROPS>(
+  boundProps: BOUND_PROPS,
+  Comp: ComponentType<ALL_PROPS>,
+  displayName: string
+) => {
+  const NewComp: FC<Omit<ALL_PROPS, keyof BOUND_PROPS>> = props => (
+    <Comp {...boundProps} {...props} />
+  );
+  NewComp.displayName = displayName;
+  return NewComp;
+};
+
+const Code: FC<{lang?: string}> = ({lang, children}) => (
+  <CopyBlock
+    text={children}
+    language="javascript"
+    showLineNumbers
+    wrapLines
+    theme={atomOneDark}
+    codeBlock
+  />
 );
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const post = await getBlogPost(context.query.slug as string);
+const CodeAdapter: FC<JSX.IntrinsicElements['code']> = ({
+  className,
+  children,
+}) => {
+  const match = className ? /language-(\w+)/.exec(className) : null;
+  return <Code lang={match?.[1]}>{children}</Code>;
+};
+CodeAdapter.displayName = 'CodeAdapter';
 
+const components = {
+  h1: bindProps({level: 1}, Heading, 'h1'),
+  h2: bindProps({level: 2}, Heading, 'h2'),
+  h3: bindProps({level: 3}, Heading, 'h3'),
+  h4: bindProps({level: 4}, Heading, 'h4'),
+  h5: bindProps({level: 5}, Heading, 'h5'),
+  h6: bindProps({level: 6}, Heading, 'h6'),
+  p: Paragraph,
+  code: CodeAdapter,
+};
+
+const BlogPost: VFC<Props> = ({
+  meta: {title, categories, description, pubDate, imageUrl, imageAlt},
+  content,
+}) => (
+  <>
+    <Head>
+      <meta name="keywords" content={categories.join(',')} />
+      <meta name="description" content={description} />
+    </Head>
+    <div className="space-y-16">
+      <article className="leading-loose">
+        <div className="relative h-[50vh]">
+          <Image
+            src={imageUrl}
+            alt={imageAlt}
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+        <div className="px-4 xl:px-0 xl:w-1/2 mx-auto space-y-8">
+          <Heading>{title}</Heading>
+          <time>{format(pubDate, 'MMM dd, yyyy')}</time>
+          <MDXRemote {...content} components={components} />
+        </div>
+      </article>
+      <About />
+    </div>
+  </>
+);
+
+export const getStaticProps: GetStaticProps<Props> = async context => {
+  const slug = context.params?.slug;
+  console.log(context.params);
+  const post = slug ? await getBlogPost(slug as string) : undefined;
+  console.log({post});
+  if (!post) {
+    return {notFound: true};
+  }
+  const {content, ...meta} = post;
   return {
-    props: {post},
-    notFound: !post,
+    props: {content: await serialize(content), meta},
   };
 };
 
-export default BlogEntry;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getBlogPosts();
+  return {
+    paths: posts.map(post => ({params: {slug: post.slug}})),
+    fallback: false,
+  };
+};
+
+export default BlogPost;
