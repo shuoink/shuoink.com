@@ -155,74 +155,6 @@ export default function Home() {
           />
 
           <Tile
-            href="https://github.com/spudly/eslint-config"
-            target="_blank"
-            rel="noopener noreferrer"
-            body="This is a shareable configuration for ESLint, a tool for checking and enforcing best practices. This helps to ensure that the code I write is high quality."
-            title="@spudly/eslint-config"
-            footer={
-              <>
-                <IconLink
-                  href="https://github.com/spudly/eslint-config"
-                  ariaLabel="eslint-config repository on GitHub"
-                >
-                  <FaGithub />
-                </IconLink>
-              </>
-            }
-          />
-          <Tile
-            href="https://github.com/spudly/pushpop"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="@spudly/pushpop"
-            body="A function library for reusing common functions."
-            footer={
-              <>
-                <IconLink
-                  href="https://github.com/spudly/pushpop"
-                  ariaLabel="pushpop repository on GitHub"
-                >
-                  <FaGithub />
-                </IconLink>
-              </>
-            }
-          />
-          <Tile
-            href="https://github.com/spudly/talk-like-a-pirate"
-            target="_blank"
-            rel="noopener noreferrer"
-            body="This be a JavaScript library to alter text to make like a pirate be talking. Yo ho!"
-            title="talk-like-a-pirate"
-            footer={
-              <>
-                <IconLink
-                  href="https://github.com/spudly/talk-like-a-pirate"
-                  ariaLabel="talk-like-a-pirate repository on GitHub"
-                >
-                  <FaGithub />
-                </IconLink>
-              </>
-            }
-          />
-          <Tile
-            href="https://github.com/spudly/strip-brackets"
-            target="_blank"
-            rel="noopener noreferrer"
-            body="A utility for removing unnecessary brackets from a string of text"
-            title="strip-brackets"
-            footer={
-              <>
-                <IconLink
-                  href="https://github.com/spudly/strip-brackets"
-                  ariaLabel="strip-brackets repository on GitHub"
-                >
-                  <FaGithub />
-                </IconLink>
-              </>
-            }
-          />
-          <Tile
             img={
               <Image
                 src={patterns}
@@ -374,6 +306,74 @@ export default function Home() {
             footer={
               <>
                 <div className="text-xs">Intercontinental Exchange, Inc.</div>
+              </>
+            }
+          />
+          <Tile
+            href="https://github.com/spudly/eslint-config"
+            target="_blank"
+            rel="noopener noreferrer"
+            body="This is a shareable configuration for ESLint, a tool for checking and enforcing best practices. This helps to ensure that the code I write is high quality."
+            title="@spudly/eslint-config"
+            footer={
+              <>
+                <IconLink
+                  href="https://github.com/spudly/eslint-config"
+                  ariaLabel="eslint-config repository on GitHub"
+                >
+                  <FaGithub />
+                </IconLink>
+              </>
+            }
+          />
+          <Tile
+            href="https://github.com/spudly/pushpop"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="@spudly/pushpop"
+            body="A function library for reusing common functions."
+            footer={
+              <>
+                <IconLink
+                  href="https://github.com/spudly/pushpop"
+                  ariaLabel="pushpop repository on GitHub"
+                >
+                  <FaGithub />
+                </IconLink>
+              </>
+            }
+          />
+          <Tile
+            href="https://github.com/spudly/talk-like-a-pirate"
+            target="_blank"
+            rel="noopener noreferrer"
+            body="This be a JavaScript library to alter text to make like a pirate be talking. Yo ho!"
+            title="talk-like-a-pirate"
+            footer={
+              <>
+                <IconLink
+                  href="https://github.com/spudly/talk-like-a-pirate"
+                  ariaLabel="talk-like-a-pirate repository on GitHub"
+                >
+                  <FaGithub />
+                </IconLink>
+              </>
+            }
+          />
+          <Tile
+            href="https://github.com/spudly/strip-brackets"
+            target="_blank"
+            rel="noopener noreferrer"
+            body="A utility for removing unnecessary brackets from a string of text"
+            title="strip-brackets"
+            footer={
+              <>
+                <IconLink
+                  href="https://github.com/spudly/strip-brackets"
+                  ariaLabel="strip-brackets repository on GitHub"
+                >
+                  <FaGithub />
+                </IconLink>
               </>
             }
           />
