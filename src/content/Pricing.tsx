@@ -43,10 +43,10 @@ const Premium: VFC = () => (
 const Pricing: VFC = () => (
   <Section
     id="pricing"
-    className="space-y-32 mx-auto xl:w-10/12 lg:my-32 p-10 lg:p-0"
+    className="xl:space-y-32 mx-auto xl:w-10/12 lg:my-32 p-10 lg:p-0"
   >
     <Heading center>Website Packages / Pricing</Heading>
-    <div className="grid grid-cols-4 gap-20">
+    <div className="space-y-4 xl:space-y-0 xl:grid grid-cols-4 gap-20">
       <Tile
         title="Basic"
         body={
