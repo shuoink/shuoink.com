@@ -6,8 +6,16 @@ const Heading: FC<
   JSX.IntrinsicElements['h1'] & {
     level?: 1 | 2 | 3 | 4 | 5 | 6;
     color?: 'primary' | 'secondary' | 'complementary' | 'white' | 'black';
+    center?: boolean;
   }
-> = ({level: levelProp, children, color = 'primary', className, ...rest}) => {
+> = ({
+  level: levelProp,
+  center,
+  children,
+  color = 'primary',
+  className,
+  ...rest
+}) => {
   const levelContext = useContext(HeadingContext) ?? 1;
   const level = levelProp ?? levelContext;
   const Tag = `h${level}` as `h${HeadingLevel}`;
@@ -15,7 +23,7 @@ const Heading: FC<
     <Tag
       className={
         className ||
-        classNames('font-semibold text-center lg:text-left', {
+        classNames('font-semibold text-center', {
           'text-primary-600': color === 'primary',
           'text-secondary-600': color === 'secondary',
           'text-complementary-600': color === 'complementary',
@@ -27,6 +35,7 @@ const Heading: FC<
           'text-2xl my-2': level === 4,
           'text-xl': level === 5,
           'text-lg': level === 6,
+          'lg:text-left': !center,
         })
       }
       // spread intentionally after className so it can be overridden

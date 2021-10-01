@@ -9,6 +9,7 @@ const LINKS: Array<LinkDescriptor> = [
   {href: '/', text: 'Home'},
   {href: '/#about', text: 'About'},
   {href: '/#portfolio', text: 'Portfolio'},
+  {href: '/#pricing', text: 'Pricing'},
   {href: '/blog', text: 'Blog'},
   {href: '/#contact', text: 'Contact'},
 ];

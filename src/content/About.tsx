@@ -55,7 +55,7 @@ const About = () => (
           sites.
         </p>
         <p>
-          Now, I'&apos;m starting a new journey as a freelance developer. I
+          Now, I&apos;m starting a new journey as a freelance developer. I
           specialize in JavaScript &amp; React.
         </p>
         <ButtonLink href="/#contact">Let&apos;s Connect</ButtonLink>

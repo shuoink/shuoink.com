@@ -31,6 +31,7 @@ const ContactForm: FC = () => {
         phone = '',
         message,
       }) => {
+        window.dataLayer.push({event: 'contact-submit'});
         const body: ContactRequestBody = {
           name,
           email,

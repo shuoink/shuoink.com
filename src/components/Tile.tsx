@@ -16,7 +16,7 @@ const Tile: FC<{
   const linkProps = {href, target, rel};
   return (
     <IncrementHeadingLevel>
-      <div className="block bg-white rounded-lg transform hover:-translate-y-2 hover:scale-105 shadow-lg duration-75">
+      <div className="flex flex-col bg-white rounded-lg transform hover:-translate-y-2 hover:scale-105 shadow-lg duration-75">
         {img && (
           <a
             {...linkProps}
@@ -25,13 +25,14 @@ const Tile: FC<{
             {img}
           </a>
         )}
-        <div className="flex flex-col p-6 text-gray-800">
+        <div className="flex-grow flex flex-col p-6 text-gray-800">
           {title && (
             <Heading className="text-2xl">
               <a {...linkProps}>{title}</a>
             </Heading>
           )}
-          {body && <p className="mt-3 text-gray-600">{body}</p>}
+          {body && <div className="mt-3 text-gray-600">{body}</div>}
+          <div className="flex-grow" />
           {footer != null && (
             <>
               <hr className="w-full my-5 divider" />
