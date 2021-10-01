@@ -66,13 +66,16 @@ const components = {
 };
 
 const BlogPost: VFC<Props> = ({
-  meta: {title, categories, description, pubDate, imageUrl, imageAlt},
+  meta: {slug, title, categories, description, pubDate, imageUrl, imageAlt},
   content,
 }) => (
   <>
     <Head>
+      {/* TODO: create a <MetaTags /> component with required props to ensure every page has all the needed SEO meta tags */}
+      <title>{title} - Stephen Sorensen | Shuoink LLC</title>
       <meta name="keywords" content={categories.join(',')} />
       <meta name="description" content={description} />
+      <link rel="canonical" href={`https://stephensorensen.com/blog/${slug}`} />
     </Head>
     <div className="space-y-16">
       <article className="leading-loose">

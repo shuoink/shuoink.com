@@ -2,11 +2,12 @@ import {FC, forwardRef, ReactNode} from 'react';
 
 const IconLink = forwardRef<
   HTMLAnchorElement,
-  {children?: ReactNode; href: string; ariaLabel: string}
->(({href, ariaLabel, children}, ref) => (
+  {children?: ReactNode; href: string; ariaLabel: string; title?: string}
+>(({href, ariaLabel, title, children}, ref) => (
   <a
     href={href}
     aria-label={ariaLabel}
+    title={title}
     ref={ref}
     className="flex justify-center items-center text-gray-300 hover:text-gray-200 transform hover:scale-125 duration-75 min-w-[48px] min-h-[48px]"
   >

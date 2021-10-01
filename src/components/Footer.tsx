@@ -24,7 +24,8 @@ const Footer = () => (
           <li>
             <IconLink
               href="https://www.linkedin.com/in/stephensorensen/"
-              ariaLabel="LinkedIn Profile"
+              ariaLabel="Stephen Sorensen's LinkedIn Profile"
+              title="Stephen Sorensen's LinkedIn Profile"
             >
               <FaLinkedin />
             </IconLink>
@@ -33,7 +34,8 @@ const Footer = () => (
           <li>
             <IconLink
               href="https://twitter.com/shuoink"
-              ariaLabel="Twitter Profile"
+              ariaLabel="Stephen Sorensen's Twitter Profile"
+              title="Stephen Sorensen's Twitter Profile"
             >
               <FaTwitter />
             </IconLink>
@@ -42,7 +44,8 @@ const Footer = () => (
           <li>
             <IconLink
               href="https://github.com/spudly"
-              ariaLabel="GitHub Profile"
+              ariaLabel="Stephen Sorensen's GitHub Profile"
+              title="Stephen Sorensen's GitHub Profile"
             >
               <FaGithub />
             </IconLink>

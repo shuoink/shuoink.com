@@ -16,7 +16,7 @@ const About = () => (
       <div className="flex-1 relative aspect-w-1 aspect-h-1">
         <Image
           src={stephen}
-          alt="me"
+          alt="Stephen Sorensen"
           layout="fill"
           objectFit="cover"
           {...resize(stephen, {width: 640})}

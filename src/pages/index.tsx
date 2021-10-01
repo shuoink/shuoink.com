@@ -16,12 +16,15 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Stephen Sorensen - Custom Web Development</title>
+        <title>
+          Custom Web Design &amp; JavaScript Development - Stephen Sorensen |
+          Shuoink LLC
+        </title>
         <meta
           name="description"
-          content="I create custom websites with dynamic, interactive content, forms, integrated e-commerce, and engaging landing pages to help you
-          reach your business goals."
+          content="Stephen Sorensen (Shuoink LLC) is a freelance javascript developer specializing in JavaScript, Node, and React."
         />
+        <link rel="canonical" href="https://stephensorensen.com" />
       </Head>
       <Section className="lg:py-16 bg-white">
         <div className="flex flex-col xl:w-10/12 px-4 mx-auto lg:flex-row sm:px-6 lg:px-8 items-center">
