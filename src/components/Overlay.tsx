@@ -1,10 +1,11 @@
-import {useLayoutEffect, useState, VFC} from 'react';
+import type {VFC} from 'react';
+import {useLayoutEffect, useState} from 'react';
 import classnames from 'classnames';
 
-export const Overlay: VFC<{visible?: boolean; onClick: () => void}> = ({
-  visible,
-  onClick,
-}) => {
+export const Overlay: VFC<{
+  visible?: boolean;
+  close: () => void;
+}> = ({visible, close}) => {
   const [isReady, setIsReady] = useState(false);
   useLayoutEffect(() => {
     setIsReady(true);
@@ -19,7 +20,13 @@ export const Overlay: VFC<{visible?: boolean; onClick: () => void}> = ({
           'bg-opacity-50': isReady,
         }
       )}
-      onClick={onClick}
-    ></div>
+      role="none"
+      onClick={close}
+      onKeyDown={event => {
+        if (event.key === 'ESC') {
+          close();
+        }
+      }}
+    />
   );
 };

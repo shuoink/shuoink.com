@@ -1,5 +1,6 @@
-import {VFC} from 'react';
-import {useField, UseFieldConfig} from 'react-final-form';
+import type {VFC} from 'react';
+import type {UseFieldConfig} from 'react-final-form';
+import {useField} from 'react-final-form';
 import {useId} from '@reach/auto-id';
 import getFieldClasses from '../utils/getFieldClasses';
 import Label from './Label';
@@ -25,7 +26,7 @@ export const TextAreaField: VFC<
           id={id}
           className={getFieldClasses({
             ...meta,
-            dock: {bottom: meta.touched && meta.invalid},
+            dock: {bottom: meta.touched === true && meta.invalid},
           })}
         />
       </Label>

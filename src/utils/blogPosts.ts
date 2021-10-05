@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import grayMatter from 'gray-matter';
-import {parse} from 'date-fns';
 
 const BLOG_POSTS_DIR = path.join(process.cwd(), 'blog');
 
@@ -20,18 +19,21 @@ export type BlogPost = {
 
 export const getBlogPost = async (slug: string): Promise<BlogPost> => {
   const fullPath = path.join(BLOG_POSTS_DIR, `${slug}.mdx`);
-  const fileContents = fs.readFileSync(fullPath, 'utf-8');
-  const {data, content} = grayMatter(fileContents);
+  const fileContents = await fs.promises.readFile(fullPath, 'utf-8');
+  const {data, content} = grayMatter(fileContents) as {
+    data: {[key: string]: unknown};
+    content: string;
+  };
 
   if (
-    !data.categories ||
-    !data.description ||
-    !data.pubDate ||
-    !data.title ||
-    !data.imageUrl ||
-    !data.imageAlt ||
-    !data.imageWidth ||
-    !data.imageHeight ||
+    typeof data.categories !== 'string' ||
+    typeof data.description !== 'string' ||
+    typeof data.pubDate !== 'string' ||
+    typeof data.title !== 'string' ||
+    typeof data.imageUrl !== 'string' ||
+    typeof data.imageAlt !== 'string' ||
+    typeof data.imageWidth !== 'string' ||
+    typeof data.imageHeight !== 'string' ||
     !content
   ) {
     throw new Error(`Incomplete Blog Post: ${slug}`);
@@ -39,7 +41,7 @@ export const getBlogPost = async (slug: string): Promise<BlogPost> => {
 
   return {
     slug,
-    categories: data.categories.trim().split(/\w*,\w*/),
+    categories: data.categories.trim().split(/\w*,\w*/u),
     description: data.description,
     title: data.title,
     pubDate: Date.parse(data.pubDate),
@@ -51,10 +53,12 @@ export const getBlogPost = async (slug: string): Promise<BlogPost> => {
   };
 };
 
-export const getBlogPosts = async () => {
+export const getBlogPosts = async (): Promise<Array<BlogPost>> => {
   const files = await fs.promises.readdir(BLOG_POSTS_DIR);
   const posts = await Promise.all(
-    files.map(name => getBlogPost(path.basename(name, path.extname(name))))
+    files.map(async name =>
+      getBlogPost(path.basename(name, path.extname(name)))
+    )
   );
   return posts.sort((a, b) => (a.pubDate > b.pubDate ? -1 : 1));
 };

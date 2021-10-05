@@ -1,7 +1,7 @@
-import {FC} from 'react';
+import type {FC} from 'react';
 import Image from 'next/image';
-import Section from './Section';
 import resize from '../utils/resize';
+import Section from './Section';
 
 const TiltedImageSection: FC<{src: StaticImageData; alt: string}> = ({
   src,

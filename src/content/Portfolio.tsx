@@ -1,11 +1,12 @@
 import Image from 'next/image';
+import {FaGithub, FaPlay} from 'react-icons/fa';
+import {RiSlideshow2Line} from 'react-icons/ri';
+import type {VFC} from 'react';
 import Masonry from '../components/Masonry';
 import Tile from '../components/Tile';
-import {FaGithub, FaPlay} from 'react-icons/fa';
 import IconLink from '../components/IconLink';
 import sadiesDonuts from '../../public/images/portfolio/sadies-donuts.png';
 import scriptureStudy from '../../public/images/portfolio/scripture-study.png';
-import {RiSlideshow2Line} from 'react-icons/ri';
 import ice from '../../public/images/portfolio/ice.png';
 import nyse from '../../public/images/portfolio/nyse.png';
 import ctaplan from '../../public/images/portfolio/ctaplan.png';
@@ -16,7 +17,6 @@ import patterns from '../../public/images/portfolio/patterns.png';
 import Section from '../components/Section';
 import Heading from '../components/Heading';
 import resize from '../utils/resize';
-import {VFC} from 'react';
 
 const Portfolio: VFC = () => (
   <Section
@@ -232,15 +232,15 @@ const Portfolio: VFC = () => (
         }
       />
       <Tile
-        href="https://github.com/spudly/eslint-config"
+        href="https://github.com/shuoink/eslint-config"
         target="_blank"
         rel="noopener noreferrer"
         body="This is a shareable configuration for ESLint, a tool for checking and enforcing best practices. This helps to ensure that the code I write is high quality."
-        title="@spudly/eslint-config"
+        title="@shuoink/eslint-config"
         footer={
           <>
             <IconLink
-              href="https://github.com/spudly/eslint-config"
+              href="https://github.com/shuoink/eslint-config"
               ariaLabel="eslint-config repository on GitHub"
             >
               <FaGithub />

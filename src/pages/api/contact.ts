@@ -1,15 +1,14 @@
-import {NextApiHandler} from 'next';
-import {EMAIL_ADDRESS, SENDGRID_API_KEY} from '../../constants';
-
+import type {NextApiHandler} from 'next';
 import sgMail from '@sendgrid/mail';
-import {ContactRequestBody} from '../../types';
+import {EMAIL_ADDRESS, SENDGRID_API_KEY} from '../../constants';
+import type {ContactRequestBody} from '../../types';
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
-const contact: NextApiHandler = async (req, resp) => {
+const contact: NextApiHandler = async (request, resp) => {
   try {
     const {name, email, message, phone, contactMethod} =
-      req.body as ContactRequestBody;
+      request.body as ContactRequestBody;
 
     await sgMail.send({
       to: EMAIL_ADDRESS,
@@ -24,8 +23,8 @@ Message: ${message}`,
     });
 
     resp.status(204).end();
-  } catch (e) {
-    resp.status(500).json({error: (e as Error).message});
+  } catch (error: unknown) {
+    resp.status(500).json({error: (error as Error).message});
   }
 };
 

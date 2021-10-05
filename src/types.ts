@@ -1,6 +1,7 @@
 declare global {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions -- augmenting
   interface Window {
-    dataLayer: Record<string, any>[];
+    dataLayer: Array<{[key: string]: any}>;
   }
 }
 

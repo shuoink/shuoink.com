@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import type {FC} from 'react';
 import classnames from 'classnames';
 
 const Label: FC<{
@@ -10,10 +10,10 @@ const Label: FC<{
   <label
     htmlFor={htmlFor}
     className={classnames('block text-2xl', {
-      'text-green-500': touched && !invalid,
-      'text-red-500': touched && invalid,
-      'text-2xl': !small,
-      'text-base': small,
+      'text-green-500': touched === true && invalid !== true,
+      'text-red-500': touched === true && invalid,
+      'text-2xl': small !== true,
+      'text-base': small === true,
     })}
   >
     {children}

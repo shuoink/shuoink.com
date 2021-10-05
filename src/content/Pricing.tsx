@@ -1,5 +1,4 @@
-import {VFC} from 'react';
-import {BsArrowRight} from 'react-icons/bs';
+import type {VFC} from 'react';
 import ButtonLink from '../components/ButtonLink';
 import HashLink from '../components/HashLink';
 import Heading from '../components/Heading';

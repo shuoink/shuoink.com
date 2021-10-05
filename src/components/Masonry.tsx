@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import React, {FC, Children} from 'react';
+import type {FC} from 'react';
+import React, {Children} from 'react';
 
 const Masonry: FC<{columns: 3 | 4 | 5 | 6}> = ({children, columns = 3}) => {
   const tiles = Children.toArray(children);
@@ -12,13 +13,13 @@ const Masonry: FC<{columns: 3 | 4 | 5 | 6}> = ({children, columns = 3}) => {
         'grid-cols-6': columns === 6,
       })}
     >
-      {Array(columns)
-        .fill(0)
-        .map((_, colIndex) => (
-          <div key={colIndex} className="space-y-4">
-            {tiles.filter((_, tileIndex) => tileIndex % columns === colIndex)}
-          </div>
-        ))}
+      {/* eslint-disable-next-line unicorn/no-new-array */}
+      {new Array(columns).fill(0).map((_col, colIndex) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <div key={colIndex} className="space-y-4">
+          {tiles.filter((_tile, tileIndex) => tileIndex % columns === colIndex)}
+        </div>
+      ))}
     </div>
   );
 };

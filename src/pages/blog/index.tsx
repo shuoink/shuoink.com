@@ -1,29 +1,30 @@
-import {GetStaticProps} from 'next';
-import {VFC} from 'react';
-import Masonry from '../../components/Masonry';
-import Tile from '../../components/Tile';
-import {BlogPost, getBlogPosts} from '../../utils/blogPosts';
+import type {GetStaticProps} from 'next';
+import type {VFC} from 'react';
 import Image from 'next/image';
 import {format} from 'date-fns';
+import Head from 'next/head';
+import Masonry from '../../components/Masonry';
+import Tile from '../../components/Tile';
+import type {BlogPost} from '../../utils/blogPosts';
+import {getBlogPosts} from '../../utils/blogPosts';
 import Section from '../../components/Section';
 import Heading from '../../components/Heading';
-import Head from 'next/head';
+import MetaTags from '../../components/MetaTags';
 
-const Blog: VFC<{posts: BlogPost[]}> = ({posts}) => {
+const Blog: VFC<{posts: Array<BlogPost>}> = ({posts}) => {
   return (
     <>
       <Head>
-        <title>Blog - Stephen Sorensen | Shuoink LLC</title>
-        <meta
-          name="description"
-          content="Stephen Sorensen (Shuoink LLC) is a freelance javascript developer specializing in JavaScript, Node, and React."
+        <MetaTags
+          title="Blog"
+          description="Stephen Sorensen (Shuoink LLC) is a freelance javascript developer specializing in JavaScript, Node, and React."
+          pathname="/blog"
         />
-        <link rel="canonical" href="https://stephensorensen.com" />
       </Head>
       <Section className="px-4 xl:px-0 xl:w-10/12 mx-auto my-16">
         <Heading>Blog Posts</Heading>
         <Masonry columns={5}>
-          {posts?.map(post => (
+          {posts.map(post => (
             <Tile
               key={post.slug}
               href={`/blog/${post.slug}`}

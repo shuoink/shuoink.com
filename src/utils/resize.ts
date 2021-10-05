@@ -1,17 +1,23 @@
 const resize = (
-  src: StaticImageData,
-  opts: {width?: number; height?: number}
+  source: StaticImageData,
+  options: {width?: number; height?: number}
 ): {width: number; height: number} => {
-  if (opts.width != null && opts.height != null) {
-    return {width: opts.width, height: opts.height};
+  if (options.width != null && options.height != null) {
+    return {width: options.width, height: options.height};
   }
-  if (opts.width != null) {
-    return {width: opts.width, height: (opts.width / src.width) * src.height};
+  if (options.width != null) {
+    return {
+      width: options.width,
+      height: (options.width / source.width) * source.height,
+    };
   }
-  if (opts.height != null) {
-    return {width: (opts.height / src.height) * src.width, height: opts.height};
+  if (options.height != null) {
+    return {
+      width: (options.height / source.height) * source.width,
+      height: options.height,
+    };
   }
-  return {width: src.width, height: src.height};
+  return {width: source.width, height: source.height};
 };
 
 export default resize;

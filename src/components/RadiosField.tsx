@@ -1,6 +1,7 @@
-import {useId} from '@reach/auto-id';
-import {createContext, FC, useContext} from 'react';
-import {FieldRenderProps, useField, UseFieldConfig} from 'react-final-form';
+import type {FC} from 'react';
+import {createContext, useContext} from 'react';
+import type {FieldRenderProps, UseFieldConfig} from 'react-final-form';
+import {useField} from 'react-final-form';
 import FieldFeedback from './FieldFeedback';
 import Label from './Label';
 
@@ -9,17 +10,17 @@ const RadioFieldsContext = createContext<FieldRenderProps<
   HTMLInputElement
 > | null>(null);
 
-export const useRadioFieldsContext = (): FieldRenderProps<
+const useRadioFieldsContext = (): FieldRenderProps<
   string,
   HTMLInputElement
 > => {
-  const inputProps = useContext(RadioFieldsContext);
+  const inputProperties = useContext(RadioFieldsContext);
 
-  if (inputProps === null) {
+  if (inputProperties === null) {
     throw new Error('Missing RadioFieldsContext');
   }
 
-  return inputProps;
+  return inputProperties;
 };
 
 const RadioFields: FC<
@@ -29,10 +30,10 @@ const RadioFields: FC<
     errorDisplayName?: string;
   }
 > = ({name, displayName, errorDisplayName, validate, children}) => {
-  const fieldRenderProps = useField(name, {validate});
-  const {meta} = fieldRenderProps;
+  const fieldRenderProperties = useField(name, {validate});
+  const {meta} = fieldRenderProperties;
   return (
-    <RadioFieldsContext.Provider value={fieldRenderProps}>
+    <RadioFieldsContext.Provider value={fieldRenderProperties}>
       {/* div wrapper prevents space-x/y utilities from
       creating space between the label and form control */}
       <div>
@@ -47,4 +48,5 @@ const RadioFields: FC<
   );
 };
 
+export {useRadioFieldsContext};
 export default RadioFields;

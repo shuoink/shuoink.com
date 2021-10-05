@@ -1,5 +1,6 @@
-import {FC} from 'react';
-import {HeadingLevel, IncrementHeadingLevel} from '../contexts/HeadingContext';
+import type {FC} from 'react';
+import type {HeadingLevel} from '../contexts/HeadingContext';
+import {IncrementHeadingLevel} from '../contexts/HeadingContext';
 
 const Section: FC<
   JSX.IntrinsicElements['section'] & {

@@ -1,13 +1,14 @@
+import Image from 'next/image';
+import type {VFC} from 'react';
 import Heading from '../components/Heading';
 import HyperLink from '../components/HyperLink';
 import Section from '../components/Section';
-import Image from 'next/image';
 import stephen from '../../public/images/stephen.jpg';
 import resize from '../utils/resize';
 import {YEAR} from '../constants';
 import ButtonLink from '../components/ButtonLink';
 
-const About = () => (
+const About: VFC = () => (
   <Section
     id="about"
     className="w-full mx-auto bg-white lg:rounded-md md:flex xl:w-10/12 overflow-hidden"

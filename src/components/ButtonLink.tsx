@@ -1,10 +1,16 @@
-import {FC, forwardRef} from 'react';
+import {forwardRef} from 'react';
 import classnames from 'classnames';
 import {BUTTON_CLASSES} from '../constants';
 
 const ButtonLink = forwardRef<HTMLAnchorElement, JSX.IntrinsicElements['a']>(
-  ({className, ...rest}, ref) => (
-    <a {...rest} ref={ref} className={classnames(className, BUTTON_CLASSES)} />
+  ({className, children, ...rest}, reference) => (
+    <a
+      {...rest}
+      ref={reference}
+      className={classnames(className, BUTTON_CLASSES)}
+    >
+      {children}
+    </a>
   )
 );
 

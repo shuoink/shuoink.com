@@ -1,4 +1,12 @@
-import {Entry} from 'contentful';
+import type {Entry} from 'contentful';
+
+export type DockConfig = {
+  top?: boolean;
+  bottom?: boolean;
+  left?: boolean;
+  right?: boolean;
+  preserveBorder?: true;
+};
 
 export type ContentfulTextFields = {
   text: string;

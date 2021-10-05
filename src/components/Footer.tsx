@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {FC} from 'react';
+import type {FC, VFC} from 'react';
 import {FaGithub, FaTwitter, FaLinkedin} from 'react-icons/fa';
 import Copyright from './Copyright';
 import IconLink from './IconLink';
@@ -11,12 +11,12 @@ const SkewTop: FC<{bgClass: string}> = ({bgClass, children}) => (
         'w-full h-[6vw] skew-y-2 transform translate-y-1/2',
         bgClass
       )}
-    ></div>
+    />
     <div className={classNames('relative z-10', bgClass)}>{children}</div>
   </div>
 );
 
-const Footer = () => (
+const Footer: VFC = () => (
   <footer>
     <SkewTop bgClass="bg-gray-700">
       <div className="px-4 pb-12 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">

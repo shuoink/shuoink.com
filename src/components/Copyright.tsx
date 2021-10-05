@@ -1,4 +1,4 @@
-import {VFC} from 'react';
+import type {VFC} from 'react';
 
 const Copyright: VFC<{holder: string; start: number}> = ({holder, start}) => {
   const current = new Date().getFullYear();

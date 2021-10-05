@@ -1,18 +1,9 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentContext,
-} from 'next/document';
+import Document, {Html, Head, Main, NextScript} from 'next/document';
+import type {ReactElement} from 'react';
 
-class MyDocument extends Document<{}> {
-  static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx);
-    return {...initialProps};
-  }
-
-  render() {
+class MyDocument extends Document {
+  // eslint-disable-next-line class-methods-use-this
+  render(): ReactElement {
     return (
       <Html lang="en" className="p-0">
         <Head>

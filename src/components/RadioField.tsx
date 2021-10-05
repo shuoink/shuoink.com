@@ -1,5 +1,5 @@
 import {useId} from '@reach/auto-id';
-import {VFC} from 'react';
+import type {VFC} from 'react';
 import getFieldClasses from '../utils/getFieldClasses';
 import Label from './Label';
 import {useRadioFieldsContext} from './RadiosField';
@@ -12,13 +12,13 @@ const RadioField: VFC<
 > = ({displayName, value, ...rest}) => {
   const id = useId() ?? '';
   const {
-    input: {value: checkedValue, ...inputProps},
+    input: {value: checkedValue, ...inputProperties},
     meta,
   } = useRadioFieldsContext();
   return (
     <Label small htmlFor={id} {...meta}>
       <input
-        {...inputProps}
+        {...inputProperties}
         {...rest}
         id={id}
         type="radio"

@@ -1,22 +1,22 @@
-import LinkDescriptor from 'next/link';
-import {FC, forwardRef, Fragment, ReactNode, useState} from 'react';
+import type {FC, ReactNode} from 'react';
+import {forwardRef, Fragment, useState} from 'react';
 import {useRouter} from 'next/dist/client/router';
-import {Overlay} from './Overlay';
 import Hamburger from 'hamburger-react';
 import classNames from 'classnames';
+import {Overlay} from './Overlay';
 import ButtonLink from './ButtonLink';
 import A11ySkipLink from './A11ySkipLink';
 import IconLink from './IconLink';
 import ShuoinkLogo from './ShuoinkLogo';
 
-export type LinkDescriptor = {href: string; text: string};
+type LinkDescriptor = {href: string; text: string};
 
 const NavLink = forwardRef<
   HTMLAnchorElement,
   {href?: string; isActive?: boolean; children: ReactNode}
->(({href, isActive, children}, ref) => (
+>(({href, isActive, children}, reference) => (
   <a
-    ref={ref}
+    ref={reference}
     href={href}
     className={classNames(
       'px-2 py-1 rounded-md group-hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600',
@@ -33,9 +33,12 @@ NavLink.displayName = 'NavLink';
 
 const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const open = () => setIsOpen(true);
-  const toggle = () => setIsOpen(is => !is);
-  const close = () => setIsOpen(false);
+  const toggle = () => {
+    setIsOpen(is => !is);
+  };
+  const close = () => {
+    setIsOpen(false);
+  };
   const {pathname} = useRouter();
   return (
     <>
@@ -63,13 +66,14 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
               <ButtonLink href="/#contact">{"Let's Work Together!"}</ButtonLink>
             </div>
             <button
+              type="button"
               className="p-1 rounded-md lg:hidden focus:ring-primary-600 focus:ring-2 focus:outline-none"
               onClick={toggle}
             >
               <Hamburger toggled={isOpen} size={25} label="Toggle Menu" />
             </button>
           </div>
-          {isOpen && <Overlay visible onClick={close} />}
+          {isOpen && <Overlay visible close={close} />}
           <div
             className={classNames(
               'absolute inset-x-0 z-10 pb-4 top-20 lg:hidden',
@@ -104,4 +108,5 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
   );
 };
 
+export type {LinkDescriptor};
 export default Header;

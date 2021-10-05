@@ -1,12 +1,5 @@
 import classnames from 'classnames';
-
-export type DockConfig = {
-  top?: boolean;
-  bottom?: boolean;
-  left?: boolean;
-  right?: boolean;
-  preserveBorder?: true;
-};
+import type {DockConfig} from './types';
 
 const getDockClasses = ({
   top,
@@ -14,7 +7,7 @@ const getDockClasses = ({
   bottom,
   left,
   preserveBorder,
-}: DockConfig) =>
+}: DockConfig): string =>
   classnames({
     'border-t-0': top && !preserveBorder,
     'border-r-0': right && !preserveBorder,

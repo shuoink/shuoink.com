@@ -1,6 +1,7 @@
 import classnames from 'classnames';
-import getDockClasses, {DockConfig} from './getDockClasses';
+import getDockClasses from './getDockClasses';
 import getValidityClasses from './getValidityClasses';
+import type {DockConfig} from './types';
 
 const getFieldClasses = ({
   touched,
@@ -14,7 +15,7 @@ const getFieldClasses = ({
   dock?: DockConfig;
   block?: boolean;
   circular?: boolean;
-}) =>
+}): string =>
   classnames(
     'p-2 text-2xl bg-white border border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-transparent focus:ring-complementary-300 focus:border-gray-100 shadow-lg',
     getDockClasses(dock),

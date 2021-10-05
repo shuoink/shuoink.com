@@ -1,15 +1,15 @@
-import {FC} from 'react';
-import {Form, FormSpy} from 'react-final-form';
+import type {FC} from 'react';
+import {Form} from 'react-final-form';
 import {FORM_ERROR} from 'final-form';
+import type {SetRequired} from 'type-fest';
+import * as value from '../utils/validate';
+import type {ContactRequestBody} from '../types';
 import Button from './Button';
 import {TextAreaField} from './TextAreaField';
 import {TextField} from './TextField';
 import Alert from './Alert';
-import * as val from '../utils/validate';
 import RadioFields from './RadiosField';
 import RadioField from './RadioField';
-import {ContactRequestBody} from '../types';
-import type {SetRequired} from 'type-fest';
 
 type Values = {
   name?: string;
@@ -19,7 +19,7 @@ type Values = {
   phone?: string;
 };
 
-type ValidValues = SetRequired<Values, 'name' | 'message' | 'contactMethod'>;
+type ValidValues = SetRequired<Values, 'contactMethod' | 'message' | 'name'>;
 
 const ContactForm: FC = () => {
   return (
@@ -63,25 +63,29 @@ const ContactForm: FC = () => {
           <Alert type="success">Thank you! Your message has been sent.</Alert>
         ) : (
           <form className="space-y-8" noValidate onSubmit={handleSubmit}>
-            <TextField name="name" displayName="Name" validate={val.required} />
+            <TextField
+              name="name"
+              displayName="Name"
+              validate={value.required}
+            />
 
             <TextAreaField
               name="message"
               displayName="Message"
               rows={3}
-              validate={val.required}
+              validate={value.required}
             />
 
             <TextField
               name="email"
               displayName="Email"
               type="email"
-              validate={val.compose(
-                val.conditional<string, Values>(
+              validate={value.compose(
+                value.conditional<string, Values>(
                   (_, all) => all.contactMethod === 'email',
-                  val.required
+                  value.required
                 ),
-                val.email
+                value.email
               )}
             />
 
@@ -89,12 +93,12 @@ const ContactForm: FC = () => {
               name="phone"
               displayName="Phone"
               type="tel"
-              validate={val.compose(
-                val.conditional<string, Values>(
+              validate={value.compose(
+                value.conditional<string, Values>(
                   (_, all) =>
                     all.contactMethod === 'phone' ||
                     all.contactMethod === 'text',
-                  val.required
+                  value.required
                 )
               )}
             />
@@ -103,7 +107,7 @@ const ContactForm: FC = () => {
               name="contactMethod"
               displayName="How would you like to be contacted?"
               errorDisplayName="Contact Method"
-              validate={val.required}
+              validate={value.required}
             >
               <div className="flex justify-between">
                 <RadioField value="email" displayName="Email Me" />
@@ -112,7 +116,7 @@ const ContactForm: FC = () => {
               </div>
             </RadioFields>
 
-            {submitError ? (
+            {submitError != null ? (
               <Alert type="error">{submitError}</Alert>
             ) : submitFailed && invalid ? (
               <Alert type="error">Please correct the field errors above.</Alert>

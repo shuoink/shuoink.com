@@ -1,34 +1,34 @@
-import {GetStaticPaths, GetStaticProps} from 'next';
-import {ComponentProps, ComponentType, FC, VFC} from 'react';
-import Heading from '../../components/Heading';
-import {
-  getBlogPost,
-  BlogPost as $BlogPost,
-  getBlogPosts,
-} from '../../utils/blogPosts';
+import type {GetStaticPaths, GetStaticProps} from 'next';
+import type {ComponentType, FC, VFC} from 'react';
 import Head from 'next/head';
 import {serialize} from 'next-mdx-remote/serialize';
 import {MDXRemote} from 'next-mdx-remote';
-import {PromiseValue} from 'type-fest';
-import About from '../../content/About';
+import type {PromiseValue} from 'type-fest';
 import {format} from 'date-fns';
 import {CopyBlock, atomOneDark} from 'react-code-blocks';
 import Image from 'next/image';
+import {getBlogPost, getBlogPosts} from '../../utils/blogPosts';
+import type {BlogPost as $BlogPost} from '../../utils/blogPosts';
+import About from '../../content/About';
+import Heading from '../../components/Heading';
+import MetaTags from '../../components/MetaTags';
 
-type Props = {
+type Properties = {
   meta: Omit<$BlogPost, 'content'>;
   content: PromiseValue<ReturnType<typeof serialize>>;
 };
 
-const Paragraph: FC<JSX.IntrinsicElements['p']> = props => <p {...props} />;
+const Paragraph: FC<JSX.IntrinsicElements['p']> = properties => (
+  <p {...properties} />
+);
 
-const bindProps = <ALL_PROPS, BOUND_PROPS extends ALL_PROPS>(
-  boundProps: BOUND_PROPS,
+const bindProperties = <ALL_PROPS, BOUND_PROPS extends ALL_PROPS>(
+  boundProperties: BOUND_PROPS,
   Comp: ComponentType<ALL_PROPS>,
   displayName: string
 ) => {
-  const NewComp: FC<Omit<ALL_PROPS, keyof BOUND_PROPS>> = props => (
-    <Comp {...boundProps} {...props} />
+  const NewComp: FC<Omit<ALL_PROPS, keyof BOUND_PROPS>> = properties => (
+    <Comp {...boundProperties} {...properties} />
   );
   NewComp.displayName = displayName;
   return NewComp;
@@ -49,33 +49,34 @@ const CodeAdapter: FC<JSX.IntrinsicElements['code']> = ({
   className,
   children,
 }) => {
-  const match = className ? /language-(\w+)/.exec(className) : null;
-  return <Code lang={match?.[1]}>{children}</Code>;
+  const match =
+    className != null ? /language-(?<lang>\w+)/u.exec(className) : null;
+  return <Code lang={match?.groups?.lang}>{children}</Code>;
 };
 CodeAdapter.displayName = 'CodeAdapter';
 
 const components = {
-  h1: bindProps({level: 1}, Heading, 'h1'),
-  h2: bindProps({level: 2}, Heading, 'h2'),
-  h3: bindProps({level: 3}, Heading, 'h3'),
-  h4: bindProps({level: 4}, Heading, 'h4'),
-  h5: bindProps({level: 5}, Heading, 'h5'),
-  h6: bindProps({level: 6}, Heading, 'h6'),
+  h1: bindProperties({level: 1}, Heading, 'h1'),
+  h2: bindProperties({level: 2}, Heading, 'h2'),
+  h3: bindProperties({level: 3}, Heading, 'h3'),
+  h4: bindProperties({level: 4}, Heading, 'h4'),
+  h5: bindProperties({level: 5}, Heading, 'h5'),
+  h6: bindProperties({level: 6}, Heading, 'h6'),
   p: Paragraph,
   code: CodeAdapter,
 };
 
-const BlogPost: VFC<Props> = ({
+const BlogPost: VFC<Properties> = ({
   meta: {slug, title, categories, description, pubDate, imageUrl, imageAlt},
   content,
 }) => (
   <>
     <Head>
-      {/* TODO: create a <MetaTags /> component with required props to ensure every page has all the needed SEO meta tags */}
-      <title>{title} - Stephen Sorensen | Shuoink LLC</title>
-      <meta name="keywords" content={categories.join(',')} />
-      <meta name="description" content={description} />
-      <link rel="canonical" href={`https://stephensorensen.com/blog/${slug}`} />
+      <MetaTags
+        title={title}
+        description={description}
+        pathname={`/blog/${slug}`}
+      />
     </Head>
     <div className="space-y-16">
       <article className="leading-loose">
@@ -98,11 +99,9 @@ const BlogPost: VFC<Props> = ({
   </>
 );
 
-export const getStaticProps: GetStaticProps<Props> = async context => {
+export const getStaticProps: GetStaticProps<Properties> = async context => {
   const slug = context.params?.slug;
-  console.log(context.params);
-  const post = slug ? await getBlogPost(slug as string) : undefined;
-  console.log({post});
+  const post = slug != null ? await getBlogPost(slug as string) : undefined;
   if (!post) {
     return {notFound: true};
   }

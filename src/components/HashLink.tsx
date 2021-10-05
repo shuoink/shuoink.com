@@ -1,20 +1,24 @@
-import {Children, cloneElement, FC, isValidElement, MouseEvent} from 'react';
+import type {FC, MouseEvent} from 'react';
+import {Children, cloneElement, isValidElement} from 'react';
 
 const HashLink: FC<{href: string}> = ({href, children}) => {
   const child = Children.only(children);
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    const url = new URL(e.currentTarget.href);
-    if (url.origin !== location.origin || url.pathname !== location.pathname) {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    const url = new URL(event.currentTarget.href);
+    if (
+      url.origin !== window.location.origin ||
+      url.pathname !== window.location.pathname
+    ) {
       return;
     }
-    e.preventDefault();
+    event.preventDefault();
     const node = document.querySelector(url.hash);
     if (node) {
       (node as HTMLAnchorElement).scrollIntoView({
         behavior: 'smooth',
       });
     }
-    history.pushState(null, '', href);
+    window.history.pushState(null, '', href);
   };
   return isValidElement(child)
     ? cloneElement(child, {href, onClick: handleClick})

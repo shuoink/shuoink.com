@@ -1,13 +1,13 @@
-import {VFC} from 'react';
+import type {VFC} from 'react';
 
-const ShuoinkLogo: VFC<JSX.IntrinsicElements['svg']> = props => (
+const ShuoinkLogo: VFC<JSX.IntrinsicElements['svg']> = properties => (
   <svg
     viewBox="0 0 530 180"
     stroke="#13065f"
     fill="#003675"
     strokeWidth="1"
     strokeLinecap="square"
-    {...props}
+    {...properties}
   >
     <title>Shuoink</title>
     {/* big W */}
