@@ -1,6 +1,5 @@
 import type {GetStaticPaths, GetStaticProps} from 'next';
 import type {ComponentType, FC, VFC} from 'react';
-import Head from 'next/head';
 import {serialize} from 'next-mdx-remote/serialize';
 import {MDXRemote} from 'next-mdx-remote';
 import type {PromiseValue} from 'type-fest';
@@ -71,13 +70,11 @@ const BlogPost: VFC<Properties> = ({
   content,
 }) => (
   <>
-    <Head>
-      <MetaTags
-        title={title}
-        description={description}
-        pathname={`/blog/${slug}`}
-      />
-    </Head>
+    <MetaTags
+      title={title}
+      description={description}
+      pathname={`/blog/${slug}`}
+    />
     <div className="space-y-16">
       <article className="leading-loose">
         <div className="relative h-[50vh]">

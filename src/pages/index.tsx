@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import {BsArrowRight, BsArrowDown} from 'react-icons/bs';
 import {FaFacebookMessenger, FaTwitter} from 'react-icons/fa';
 import type {VFC} from 'react';
@@ -10,20 +9,17 @@ import Slant from '../components/Slant';
 import Strong from '../components/Strong';
 import About from '../content/About';
 import Portfolio from '../content/Portfolio';
-import Pricing from '../content/Pricing';
 import HashLink from '../components/HashLink';
 import MetaTags from '../components/MetaTags';
 
 const Home: VFC = () => (
   <>
-    <Head>
-      <MetaTags
-        key="meta-tags"
-        title="Custom Web Design & JavaScript Development"
-        description="Stephen Sorensen (Shuoink LLC) is a freelance javascript developer specializing in JavaScript, Node, and React."
-        pathname="/"
-      />
-    </Head>
+    <MetaTags
+      key="meta-tags"
+      title="Custom JavaScript/React Development"
+      description="Stephen Sorensen (Shuoink LLC) is a freelance javascript developer specializing in JavaScript, Node, and React."
+      pathname="/"
+    />
     <Section className="lg:py-16 bg-white">
       <div className="flex flex-col xl:w-10/12 px-4 mx-auto lg:flex-row sm:px-6 lg:px-8 items-center">
         <div className="flex-1 flex flex-col items-center justify-center text-center lg:text-left lg:items-start space-y-8 py-8 xl:space-y-16 xl:py-32">
@@ -71,8 +67,6 @@ const Home: VFC = () => (
         </blockquote>
         <p className="pt-8 text-xl md:text-2xl">&mdash; Me, LOL</p>
       </FullImageSectionWithSlant> */}
-
-    <Pricing />
 
     <Section
       id="contact"

@@ -16,7 +16,7 @@ const FieldFeedback: VFC<
         getValidityClasses(false)
       )}
     >
-      {((error ?? submitError) as string).replace(/\[name]/u, displayName)}
+      {((error ?? submitError) as string).replace(/\[name\]/u, displayName)}
     </div>
   ) : null;
 
