@@ -32,8 +32,8 @@ export const getBlogPost = async (slug: string): Promise<BlogPost> => {
     typeof data.title !== 'string' ||
     typeof data.imageUrl !== 'string' ||
     typeof data.imageAlt !== 'string' ||
-    typeof data.imageWidth !== 'string' ||
-    typeof data.imageHeight !== 'string' ||
+    typeof data.imageWidth !== 'number' ||
+    typeof data.imageHeight !== 'number' ||
     !content
   ) {
     throw new Error(`Incomplete Blog Post: ${slug}`);

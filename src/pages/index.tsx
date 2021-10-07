@@ -91,7 +91,7 @@ const Home: VFC = () => (
           </a>
           <a
             target="_blank"
-            href="http://m.me/stephenjohnsorensen"
+            href="http://m.me/shuoink"
             rel="noopener noreferrer"
             className="inline-flex items-center rounded-l-full rounded-r-full bg-[#2D88FF] hover:bg-[#4294ff] px-4 py-2 text-white m-2"
             onClick={() =>

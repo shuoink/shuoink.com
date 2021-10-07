@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import type {FC, VFC} from 'react';
-import {FaGithub, FaTwitter, FaLinkedin} from 'react-icons/fa';
+import {FaGithub, FaTwitter, FaLinkedin, FaFacebook} from 'react-icons/fa';
 import Copyright from './Copyright';
 import IconLink from './IconLink';
 
@@ -48,6 +48,16 @@ const Footer: VFC = () => (
               title="Stephen Sorensen's GitHub Profile"
             >
               <FaGithub />
+            </IconLink>
+          </li>
+
+          <li>
+            <IconLink
+              href="https://www.facebook.com/shuoink"
+              ariaLabel="Shuoink Facebook Page"
+              title="Shuoink Facebook Page"
+            >
+              <FaFacebook />
             </IconLink>
           </li>
         </ul>
