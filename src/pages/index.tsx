@@ -15,8 +15,7 @@ import MetaTags from '../components/MetaTags';
 const Home: VFC = () => (
   <>
     <MetaTags
-      key="meta-tags"
-      title="Custom JavaScript/React Development"
+      title="React/JavaScript Consulting"
       description="Stephen Sorensen (Shuoink LLC) is a freelance javascript developer specializing in JavaScript, Node, and React."
       pathname="/"
     />

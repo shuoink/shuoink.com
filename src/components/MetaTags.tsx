@@ -6,7 +6,7 @@ const MetaTags: VFC<{
   description: string;
   pathname: string;
 }> = ({title, description, pathname}) => {
-  const titleSuffix = 'Custom ReactJS Development - Stephen Sorensen | Shuoink';
+  const titleSuffix = ' - Stephen Sorensen | Shuoink';
   const fullTitle = `${title}${titleSuffix}`;
   if (process.env.NODE_ENV === 'development' && fullTitle.length > 60) {
     // eslint-disable-next-line no-console -- needed
