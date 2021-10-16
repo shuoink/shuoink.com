@@ -3,7 +3,7 @@ import {forwardRef} from 'react';
 
 const IconLink = forwardRef<
   HTMLAnchorElement,
-  {children?: ReactNode; href: string; ariaLabel: string; title?: string}
+  {children?: ReactNode; href?: string; ariaLabel: string; title?: string}
 >(({href, ariaLabel, title, children}, reference) => (
   <a
     href={href}

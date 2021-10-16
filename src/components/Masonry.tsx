@@ -1,18 +1,11 @@
-import classNames from 'classnames';
 import type {FC} from 'react';
 import React, {Children} from 'react';
 
-const Masonry: FC<{columns: 3 | 4 | 5 | 6}> = ({children, columns = 3}) => {
+const Masonry: FC = ({children}) => {
   const tiles = Children.toArray(children);
+  const columns = 5;
   return (
-    <div
-      className={classNames('lg:grid gap-4 isolate', {
-        'grid-cols-3': columns === 3,
-        'grid-cols-4': columns === 4,
-        'grid-cols-5': columns === 5,
-        'grid-cols-6': columns === 6,
-      })}
-    >
+    <div className="grid gap-4 isolate grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {/* eslint-disable-next-line unicorn/no-new-array */}
       {new Array(columns).fill(0).map((_col, colIndex) => (
         // eslint-disable-next-line react/no-array-index-key

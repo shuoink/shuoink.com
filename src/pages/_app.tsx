@@ -9,11 +9,11 @@ import Footer from '../components/Footer';
 
 const LINKS: Array<LinkDescriptor> = [
   {href: '/', text: 'Home'},
-  {href: '/#about', text: 'About'},
-  {href: '/#portfolio', text: 'Portfolio'},
-  {href: '/#pricing', text: 'Pricing'},
+  {href: '/about', text: 'About'},
+  {href: '/services', text: 'Services'},
+  {href: '/portfolio', text: 'Portfolio'},
   {href: '/blog', text: 'Blog'},
-  {href: '/#contact', text: 'Contact'},
+  {href: '/contact', text: 'Contact'},
 ];
 
 const App: VFC<AppProps> = ({Component, pageProps}) => (

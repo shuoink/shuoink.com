@@ -2,7 +2,7 @@ import type {VFC} from 'react';
 import {useLayoutEffect, useState} from 'react';
 import classnames from 'classnames';
 
-export const Overlay: VFC<{
+const Overlay: VFC<{
   visible?: boolean;
   close: () => void;
 }> = ({visible, close}) => {
@@ -12,14 +12,11 @@ export const Overlay: VFC<{
   }, []);
   return (
     <div
-      className={classnames(
-        'fixed top-0 right-0 bottom-0 left-0 duration-100',
-        {
-          'bg-gray-900 dark:bg-gray-100': visible,
-          'bg-opacity-0': !isReady,
-          'bg-opacity-50': isReady,
-        }
-      )}
+      className={classnames('fixed inset-0 duration-100', {
+        'bg-gray-900 dark:bg-gray-100': visible,
+        'bg-opacity-0': !isReady,
+        'bg-opacity-75': isReady,
+      })}
       role="none"
       onClick={close}
       onKeyDown={event => {
@@ -30,3 +27,5 @@ export const Overlay: VFC<{
     />
   );
 };
+
+export default Overlay;

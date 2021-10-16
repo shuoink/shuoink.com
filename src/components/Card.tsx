@@ -1,31 +1,41 @@
-import type {FC, ReactElement, ReactNode} from 'react';
+import type {FC, MouseEvent, ReactElement, ReactNode} from 'react';
+import classNames from 'classnames';
 import {IncrementHeadingLevel} from '../contexts/HeadingContext';
 import Heading from './Heading';
 
-const Tile: FC<{
-  img?: ReactElement;
+const Card: FC<{
+  media?: ReactElement;
   href?: string;
   target?: string;
   title?: ReactNode;
   body?: ReactNode;
   footer?: ReactNode;
   rel?: string;
-}> = ({href, target, rel, title, body, footer, img}) => {
-  const linkProperties = {href, target, rel};
+  spaced?: boolean;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+}> = ({href, target, rel, title, body, footer, media, spaced, onClick}) => {
+  const linkProperties = {href, target, rel, onClick};
   return (
     <IncrementHeadingLevel>
-      <div className="flex flex-col bg-white rounded-lg transform hover:-translate-y-2 hover:scale-105 shadow-lg duration-75">
-        {img && (
+      <div
+        className={classNames(
+          'flex flex-col bg-white rounded-lg transform hover:-translate-y-2 hover:scale-105 shadow-lg duration-75 max-w-min',
+          {
+            'm-4': spaced,
+          }
+        )}
+      >
+        {media && (
           <a
             {...linkProperties}
             className="block relative rounded-t-lg overflow-hidden"
           >
-            {img}
+            {media}
           </a>
         )}
         <div className="flex-grow flex flex-col p-6 text-gray-800">
           {title && (
-            <Heading className="text-2xl">
+            <Heading className="font-bold">
               <a {...linkProperties}>{title}</a>
             </Heading>
           )}
@@ -45,4 +55,4 @@ const Tile: FC<{
   );
 };
 
-export default Tile;
+export default Card;

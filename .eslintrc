@@ -1,3 +1,6 @@
 {
-  "extends": ["@shuoink", "next", "next/core-web-vitals", "prettier"]
+  "extends": ["@shuoink", "next", "next/core-web-vitals", "prettier"],
+  "rules": {
+    "no-warning-comments": "off"
+  }
 }

@@ -3,7 +3,7 @@ import type {VFC} from 'react';
 import Image from 'next/image';
 import {format} from 'date-fns';
 import Masonry from '../../components/Masonry';
-import Tile from '../../components/Tile';
+import Card from '../../components/Card';
 import type {BlogPost} from '../../utils/blogPosts';
 import {getBlogPosts} from '../../utils/blogPosts';
 import Section from '../../components/Section';
@@ -20,14 +20,14 @@ const Blog: VFC<{posts: Array<BlogPost>}> = ({posts}) => {
       />
       <Section className="px-4 xl:px-0 xl:w-10/12 mx-auto my-16">
         <Heading>Blog Posts</Heading>
-        <Masonry columns={5}>
+        <Masonry>
           {posts.map(post => (
-            <Tile
+            <Card
               key={post.slug}
               href={`/blog/${post.slug}`}
               body={<p>{post.description}</p>}
               title={post.title}
-              img={
+              media={
                 <Image
                   src={post.imageUrl}
                   alt={post.imageAlt}

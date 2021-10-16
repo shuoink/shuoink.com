@@ -8,7 +8,6 @@ import {CopyBlock, atomOneDark} from 'react-code-blocks';
 import Image from 'next/image';
 import {getBlogPost, getBlogPosts} from '../../utils/blogPosts';
 import type {BlogPost as $BlogPost} from '../../utils/blogPosts';
-import About from '../../content/About';
 import Heading from '../../components/Heading';
 import MetaTags from '../../components/MetaTags';
 
@@ -91,7 +90,6 @@ const BlogPost: VFC<Properties> = ({
           <MDXRemote {...content} components={components} />
         </div>
       </article>
-      <About />
     </div>
   </>
 );

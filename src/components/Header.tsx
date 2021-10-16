@@ -3,7 +3,8 @@ import {forwardRef, Fragment, useState} from 'react';
 import {useRouter} from 'next/dist/client/router';
 import Hamburger from 'hamburger-react';
 import classNames from 'classnames';
-import {Overlay} from './Overlay';
+import Link from 'next/link';
+import Overlay from './Overlay';
 import ButtonLink from './ButtonLink';
 import A11ySkipLink from './A11ySkipLink';
 import IconLink from './IconLink';
@@ -47,9 +48,11 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
         <div className="relative xl:w-10/12 mx-auto">
           <div className="flex items-center justify-between lg:p-4">
             <div className="pl-4 lg:p-0">
-              <IconLink href="/" ariaLabel="Home">
-                <ShuoinkLogo height={48} />
-              </IconLink>
+              <Link href="/" passHref>
+                <IconLink ariaLabel="Home">
+                  <ShuoinkLogo height={48} />
+                </IconLink>
+              </Link>
             </div>
             <div className="hidden lg:block">
               <ul className="flex items-center space-x-12 text-lg font-medium">
@@ -63,7 +66,9 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
               </ul>
             </div>
             <div className="hidden lg:block">
-              <ButtonLink href="/#contact">{"Let's Work Together!"}</ButtonLink>
+              <Link href="/contact" passHref>
+                <ButtonLink>{"Let's Work Together!"}</ButtonLink>
+              </Link>
             </div>
             <button
               type="button"
@@ -96,9 +101,9 @@ const Header: FC<{links: Array<LinkDescriptor>}> = ({links}) => {
                 </Fragment>
               ))}
               <div className="text-center">
-                <ButtonLink href="/#contact">
-                  {"Let's Work Together!"}
-                </ButtonLink>
+                <Link href="/contact" passHref>
+                  <ButtonLink>{"Let's Work Together!"}</ButtonLink>
+                </Link>
               </div>
             </div>
           </div>
