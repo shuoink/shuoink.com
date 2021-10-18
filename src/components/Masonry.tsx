@@ -5,7 +5,7 @@ const Masonry: FC = ({children}) => {
   const tiles = Children.toArray(children);
   const columns = 5;
   return (
-    <div className="grid gap-4 isolate grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className="grid gap-4 isolate grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
       {/* eslint-disable-next-line unicorn/no-new-array */}
       {new Array(columns).fill(0).map((_col, colIndex) => (
         // eslint-disable-next-line react/no-array-index-key
