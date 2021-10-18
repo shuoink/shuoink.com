@@ -11,18 +11,16 @@ const Card: FC<{
   body?: ReactNode;
   footer?: ReactNode;
   rel?: string;
-  spaced?: boolean;
+  grow?: boolean;
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
-}> = ({href, target, rel, title, body, footer, media, spaced, onClick}) => {
+}> = ({href, target, rel, title, body, footer, media, grow, onClick}) => {
   const linkProperties = {href, target, rel, onClick};
   return (
     <IncrementHeadingLevel>
       <div
         className={classNames(
-          'flex flex-col bg-white rounded-lg transform hover:-translate-y-2 hover:scale-105 shadow-lg duration-75 max-w-min',
-          {
-            'm-4': spaced,
-          }
+          'flex flex-col bg-white rounded-lg transform hover:-translate-y-2 hover:scale-105 shadow-lg duration-75 w-full',
+          {'flex-grow': grow}
         )}
       >
         {media && (
