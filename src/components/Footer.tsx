@@ -28,7 +28,7 @@ const Footer: VFC = () => (
     </div>
     <div className="bg-gray-700 relative">
       <div className="px-4 pb-12 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
-        <ul className="flex justify-center mt-8 space-x-12 text-2xl">
+        <ul className="flex justify-around sm:justify-center mt-8 sm:space-x-12 text-2xl">
           <li>
             <IconLink
               href="https://www.linkedin.com/in/stephensorensen/"
