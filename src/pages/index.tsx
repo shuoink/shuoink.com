@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {BsArrowRight, BsArrowDown} from 'react-icons/bs';
 import type {VFC} from 'react';
 import Link from 'next/link';
@@ -6,6 +8,52 @@ import Section from '../components/Section';
 import Heading from '../components/Heading';
 import Strong from '../components/Strong';
 import MetaTags from '../components/MetaTags';
+import cssLogo from '../../public/images/logos/css.svg';
+import cypressLogo from '../../public/images/logos/cypress.svg';
+import eslintLogo from '../../public/images/logos/eslint.svg';
+import graphqlLogo from '../../public/images/logos/graphql.svg';
+import htmlLogo from '../../public/images/logos/html.svg';
+import javascriptLogo from '../../public/images/logos/javascript.svg';
+import jestLogo from '../../public/images/logos/jest.svg';
+import nextLogo from '../../public/images/logos/next.svg';
+import nodeLogo from '../../public/images/logos/node.svg';
+import reactLogo from '../../public/images/logos/react.svg';
+import tailwindcssLogo from '../../public/images/logos/tailwindcss.svg';
+import typescriptLogo from '../../public/images/logos/typescript.svg';
+import webpackLogo from '../../public/images/logos/webpack.svg';
+import reactQueryLogo from '../../public/images/logos/react-query.svg';
+import viteLogo from '../../public/images/logos/vite.svg';
+import LogoCarousel from '../components/LogoCarousel';
+
+const logos: Array<{href?: string; src: string; alt: string}> = [
+  {src: htmlLogo.src, alt: 'HTML'},
+  {src: cssLogo.src, alt: 'CSS'},
+  {src: javascriptLogo.src, alt: 'JavaScript'},
+  {href: 'https://reactjs.org/', src: reactLogo.src, alt: 'ReactJS'},
+  {href: 'https://nodejs.org/en/', src: nodeLogo.src, alt: 'Node'},
+  {href: 'https://nextjs.org/', src: nextLogo.src, alt: 'NextJS'},
+  {href: 'https://graphql.org/', src: graphqlLogo.src, alt: 'GraphQL'},
+  {href: 'https://www.cypress.io/', src: cypressLogo.src, alt: 'Cypress'},
+  {href: 'https://eslint.org/', src: eslintLogo.src, alt: 'ESLint'},
+  {href: 'https://jestjs.io/', src: jestLogo.src, alt: 'Jest'},
+  {
+    href: 'https://tailwindcss.com/',
+    src: tailwindcssLogo.src,
+    alt: 'Tailwind CSS',
+  },
+  {
+    href: 'https://www.typescriptlang.org/',
+    src: typescriptLogo.src,
+    alt: 'TypeScript',
+  },
+  {href: 'https://webpack.js.org/', src: webpackLogo.src, alt: 'Webpack'},
+  {
+    href: 'https://react-query.tanstack.com/',
+    src: reactQueryLogo.src,
+    alt: 'react-query',
+  },
+  {href: 'https://vitejs.dev/', src: viteLogo.src, alt: 'Vite'},
+];
 
 const Home: VFC = () => (
   <>
@@ -35,12 +83,12 @@ const Home: VFC = () => (
                 <BsArrowRight className="text-2xl ml-2" />
               </ButtonLink>
             </Link>
-            <ButtonLink href="/services">
+            <Link href="/services" passHref>
               <ButtonLink>
                 <span>Tell Me More</span>
                 <BsArrowDown className="text-2xl ml-2" />
               </ButtonLink>
-            </ButtonLink>
+            </Link>
           </div>
         </div>
       </div>
@@ -53,6 +101,8 @@ const Home: VFC = () => (
         </blockquote>
         <p className="pt-8 text-xl md:text-2xl">&mdash; Me, LOL</p>
       </FullImageSectionWithSlant> */}
+
+    <LogoCarousel logos={logos} />
   </>
 );
 

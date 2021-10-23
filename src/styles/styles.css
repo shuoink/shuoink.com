@@ -14,4 +14,18 @@
     transform-origin: center center;
     transform-style: preserve-3d;
   }
+
+  .animate-infinite-scroll-to-left {
+    animation: infinite-to-left 60s linear infinite;
+  }
+  
+  @keyframes infinite-to-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 }
+
