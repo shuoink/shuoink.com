@@ -29,9 +29,9 @@ const logos: Array<{href?: string; src: string; alt: string}> = [
   {src: htmlLogo.src, alt: 'HTML'},
   {src: cssLogo.src, alt: 'CSS'},
   {src: javascriptLogo.src, alt: 'JavaScript'},
-  {href: 'https://reactjs.org/', src: reactLogo.src, alt: 'ReactJS'},
-  {href: 'https://nodejs.org/en/', src: nodeLogo.src, alt: 'Node'},
-  {href: 'https://nextjs.org/', src: nextLogo.src, alt: 'NextJS'},
+  {href: 'https://reactjs.org/', src: reactLogo.src, alt: 'React / ReactJS'},
+  {href: 'https://nodejs.org/en/', src: nodeLogo.src, alt: 'Node / NodeJS'},
+  {href: 'https://nextjs.org/', src: nextLogo.src, alt: 'Next / NextJS'},
   {href: 'https://graphql.org/', src: graphqlLogo.src, alt: 'GraphQL'},
   {href: 'https://www.cypress.io/', src: cypressLogo.src, alt: 'Cypress'},
   {href: 'https://eslint.org/', src: eslintLogo.src, alt: 'ESLint'},
@@ -54,6 +54,10 @@ const logos: Array<{href?: string; src: string; alt: string}> = [
   },
   {href: 'https://vitejs.dev/', src: viteLogo.src, alt: 'Vite'},
 ];
+
+// SEO Suggestions from MOZ
+// 1. Use the exact keyword in the document at least once
+// 3. Use keywords in header tags (h1...h6). two times is optimal
 
 const Home: VFC = () => (
   <>
@@ -79,13 +83,13 @@ const Home: VFC = () => (
           <div className="flex flex-col w-full mt-6 space-y-3 lg:space-y-0 lg:space-x-3 lg:flex-row lg:px-0">
             <Link href="/contact" passHref>
               <ButtonLink>
-                <span>I&apos;m ready!</span>
+                <span>Let&apos;s Talk!</span>
                 <BsArrowRight className="text-2xl ml-2" />
               </ButtonLink>
             </Link>
             <Link href="/services" passHref>
               <ButtonLink>
-                <span>Tell Me More</span>
+                <span>Learn More</span>
                 <BsArrowDown className="text-2xl ml-2" />
               </ButtonLink>
             </Link>
@@ -93,14 +97,6 @@ const Home: VFC = () => (
         </div>
       </div>
     </Section>
-
-    {/* <FullImageSectionWithSlant src={lightbulbs} alt="lightbulbs">
-        <blockquote className="text-4xl font-medium md:text-5xl before:content-[open-quote] after:content-[close-quote] md:leading-tight">
-          I haven&apos;t had my first freelance client yet, but when I do,
-          there&apos;s going to be a rockstar testimonial here!
-        </blockquote>
-        <p className="pt-8 text-xl md:text-2xl">&mdash; Me, LOL</p>
-      </FullImageSectionWithSlant> */}
 
     <LogoCarousel logos={logos} />
   </>

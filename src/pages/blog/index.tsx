@@ -10,6 +10,16 @@ import Section from '../../components/Section';
 import Heading from '../../components/Heading';
 import MetaTags from '../../components/MetaTags';
 
+// seo suggestions from MOZ
+// Exact Keyword Used in Document at Least Once
+// Sufficient Words in Content
+// Broad Keyword Use in Page Title
+// Exact Keyword is Used in Page Title
+// Keyword Placement in Page Title
+// Use Keywords in your URL
+// Optimal Use of Keywords in Header Tags
+// Keywords in Image Alt Attribute
+
 const Blog: VFC<{posts: Array<BlogPost>}> = ({posts}) => {
   return (
     <>

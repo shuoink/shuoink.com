@@ -19,6 +19,14 @@ import Section from '../components/Section';
 import Heading from '../components/Heading';
 import MetaTags from '../components/MetaTags';
 
+// SEO suggestions from MOZ
+// 1. "portfolio" is too broad
+// 2. use exact keywords in title
+// 3. put keywords at the beginning of the title
+// 4. use keywords in url
+// 5. use keywords in meta description
+// 6. use keywords in header 2 times
+
 type PortfolioItem = {
   id: string;
   src: StaticImageData;

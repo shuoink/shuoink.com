@@ -13,8 +13,8 @@ import MetaTags from '../components/MetaTags';
 const About: VFC = () => (
   <>
     <MetaTags
-      title="About"
-      description="About Stephen Sorensen"
+      title="Stephen Sorensen - JavaScript / ReactJS Developer"
+      description="Stephen Sorensen is a freelance JavaScript developer specializing in ReactJS."
       pathname="/about"
     />
     <Section
@@ -25,7 +25,7 @@ const About: VFC = () => (
         <div className="flex-1 relative aspect-w-1 aspect-h-1">
           <Image
             src={stephen}
-            alt="Stephen Sorensen"
+            alt="Stephen Sorensen - JavaScript / ReactJS Developer"
             layout="fill"
             objectFit="cover"
             {...resize(stephen, {width: 640})}
@@ -34,7 +34,7 @@ const About: VFC = () => (
       </div>
       <div className="flex items-center flex-1">
         <div className="p-10 md:p-22 sm:p-16 space-y-4">
-          <Heading>Stephen Sorensen</Heading>
+          <Heading>Stephen Sorensen - JavaScript Developer</Heading>
           <p className="leading-loose text-black xxl:text-xl">
             Hi, I&apos;m Stephen Sorensen. I make web sites. In fact, I&apos;ve
             been creating web sites for nearly 30 years now.

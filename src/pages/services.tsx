@@ -14,6 +14,15 @@ import Section from '../components/Section';
 import Card from '../components/Card';
 import ButtonLink from '../components/ButtonLink';
 
+// SEO Suggestions from MOZ:
+// 1. Broad keyword use in page title (change services to something better, including seo keywords)
+// 2. use exact keyword in page title
+// 3. put keywords at the front of the title
+// 4. use keywords in url
+// 5. use keywords in meta description
+// 6. use keywords in header tags 2 times
+// 7.use keywords in img alt attributes
+
 const Services: VFC = () => (
   <>
     <MetaTags

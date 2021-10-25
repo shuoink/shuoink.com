@@ -11,6 +11,15 @@ import type {BlogPost as $BlogPost} from '../../utils/blogPosts';
 import Heading from '../../components/Heading';
 import MetaTags from '../../components/MetaTags';
 
+// SEO suggestions from MOZ:
+// Broad Keyword Use in Page Title
+// Exact Keyword is Used in Page Title
+// Keyword Placement in Page Title
+// Use Keywords in your URL
+// Keywords in the Meta Description
+// Optimal Use of Keywords in Header Tags
+// Keywords in Image Alt Attribute
+
 type Properties = {
   meta: Omit<$BlogPost, 'content'>;
   content: PromiseValue<ReturnType<typeof serialize>>;
