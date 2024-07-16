@@ -17,7 +17,7 @@
     "contentful": "^10.4.0",
     "date-fns": "^3.6.0",
     "email-regex": "^5.0.0",
-    "final-form": "^4.20.4",
+    "final-form": "^4.20.10",
     "gray-matter": "^4.0.3",
     "hamburger-react": "^2.4.1",
     "keen-slider": "^5.5.1",
