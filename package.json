@@ -29,7 +29,7 @@
     "react-final-form": "^6.5.9",
     "react-icons": "^5.2.1",
     "react-use": "^17.5.0",
-    "type-fest": "^2.5.3"
+    "type-fest": "^4.21.0"
   },
   "devDependencies": {
     "@shuoink/eslint-config": "^10.0.3",
