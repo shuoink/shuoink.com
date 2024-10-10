@@ -15,7 +15,7 @@
     "@sendgrid/mail": "^8.0.0",
     "classnames": "^2.5.1",
     "contentful": "^10.15.1",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.1.0",
     "email-regex": "^5.0.0",
     "final-form": "^4.20.10",
     "gray-matter": "^4.0.3",
