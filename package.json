@@ -21,7 +21,7 @@
     "gray-matter": "^4.0.3",
     "hamburger-react": "^2.5.1",
     "keen-slider": "^5.5.1",
-    "next": "^14.2.15",
+    "next": "^14.2.24",
     "next-mdx-remote": "^5.0.0",
     "react": "18.3.1",
     "react-code-blocks": "^0.1.0",
