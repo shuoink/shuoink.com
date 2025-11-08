@@ -23,7 +23,7 @@
     "keen-slider": "^5.5.1",
     "next": "^15.5.2",
     "next-mdx-remote": "^5.0.0",
-    "react": "19.1.1",
+    "react": "19.2.0",
     "react-code-blocks": "^0.1.0",
     "react-dom": "19.1.1",
     "react-final-form": "^6.5.9",
